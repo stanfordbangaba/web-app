@@ -1,15 +1,15 @@
 /** Angular Imports */
-import { Component, Input } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import {Component, Input} from '@angular/core';
+import {MatDialog} from '@angular/material/dialog';
 
 /** Custom Models */
-import { FormfieldBase } from 'app/shared/form-dialog/formfield/model/formfield-base';
-import { InputBase } from 'app/shared/form-dialog/formfield/model/input-base';
-import { SelectBase } from 'app/shared/form-dialog/formfield/model/select-base';
+import {FormfieldBase} from 'app/shared/form-dialog/formfield/model/formfield-base';
+import {InputBase} from 'app/shared/form-dialog/formfield/model/input-base';
+import {SelectBase} from 'app/shared/form-dialog/formfield/model/select-base';
 
 /** Custom Dialogs */
-import { FormDialogComponent } from 'app/shared/form-dialog/form-dialog.component';
-import { DeleteDialogComponent } from 'app/shared/delete-dialog/delete-dialog.component';
+import {FormDialogComponent} from 'app/shared/form-dialog/form-dialog.component';
+import {DeleteDialogComponent} from 'app/shared/delete-dialog/delete-dialog.component';
 
 /**
  * Client Address Step Component
@@ -32,7 +32,8 @@ export class ClientAddressStepComponent {
   /**
    * @param {MatDialog} dialog Mat Dialog
    */
-  constructor(private dialog: MatDialog) { }
+  constructor(private dialog: MatDialog) {
+  }
 
   /**
    * Adds a client address
@@ -42,8 +43,9 @@ export class ClientAddressStepComponent {
       title: 'Add Client Address',
       formfields: this.getAddressFormFields()
     };
-    const addAddressDialogRef = this.dialog.open(FormDialogComponent, { data });
+    const addAddressDialogRef = this.dialog.open(FormDialogComponent, {data});
     addAddressDialogRef.afterClosed().subscribe((response: any) => {
+
       if (response.data) {
         const addressData = response.data.value;
         addressData.isActive = false;
@@ -52,6 +54,7 @@ export class ClientAddressStepComponent {
             delete addressData[key];
           }
         }
+        console.log(addressData);
         this.clientAddressData.push(addressData);
       }
     });
@@ -66,9 +69,9 @@ export class ClientAddressStepComponent {
     const data = {
       title: 'Edit Client Address',
       formfields: this.getAddressFormFields(address),
-      layout: { addButtonText: 'Edit' }
+      layout: {addButtonText: 'Edit'}
     };
-    const editAddressDialogRef = this.dialog.open(FormDialogComponent, { data });
+    const editAddressDialogRef = this.dialog.open(FormDialogComponent, {data});
     editAddressDialogRef.afterClosed().subscribe((response: any) => {
       if (response.data) {
         const addressData = response.data.value;
@@ -89,7 +92,7 @@ export class ClientAddressStepComponent {
    */
   deleteAddress(address: any, index: number) {
     const deleteAddressDialogRef = this.dialog.open(DeleteDialogComponent, {
-      data: { deleteContext: `address type : ${address.addressType} ${index}` }
+      data: {deleteContext: `address type : ${address.addressType} ${index}`}
     });
     deleteAddressDialogRef.afterClosed().subscribe((response: any) => {
       if (response.delete) {
@@ -120,7 +123,9 @@ export class ClientAddressStepComponent {
    * @param {any} address Address
    */
   getSelectedValue(fieldName: any, fieldId: any) {
-    return (this.clientTemplate.address[fieldName].find((fieldObj: any) => fieldObj.id === fieldId));
+    const addressOptions = this.clientTemplate.address[0];
+    return (addressOptions[fieldName].find((fieldObj: any) => fieldObj.id === fieldId));
+    // return (this.clientTemplate.address[fieldName].find((fieldObj: any) => fieldObj.id === fieldId));
   }
 
   /**
@@ -128,12 +133,13 @@ export class ClientAddressStepComponent {
    * @param {any} address Address
    */
   getAddressFormFields(address?: any) {
+    const addressOptions = this.clientTemplate.address[0];
     let formfields: FormfieldBase[] = [];
     formfields.push(this.isFieldEnabled('addressType') ? new SelectBase({
       controlName: 'addressTypeId',
       label: 'Address Type',
       value: address ? address.addressTypeId : '',
-      options: { label: 'name', value: 'id', data: this.clientTemplate.address.addressTypeIdOptions },
+      options: {label: 'name', value: 'id', data: addressOptions.addressTypeIdOptions},
       order: 1,
       required: true
     }) : null);
@@ -184,7 +190,7 @@ export class ClientAddressStepComponent {
       controlName: 'stateProvinceId',
       label: 'State / Province',
       value: address ? address.stateProvinceId : '',
-      options: { label: 'name', value: 'id', data: this.clientTemplate.address.stateProvinceIdOptions },
+      options: {label: 'name', value: 'id', data: addressOptions.stateProvinceIdOptions},
       order: 8
     }) : null);
     formfields.push(this.isFieldEnabled('countyDistrict') ? new InputBase({
@@ -198,7 +204,7 @@ export class ClientAddressStepComponent {
       controlName: 'countryId',
       label: 'Country',
       value: address ? address.countryId : '',
-      options: { label: 'name', value: 'id', data: this.clientTemplate.address.countryIdOptions },
+      options: {label: 'name', value: 'id', data: addressOptions.countryIdOptions},
       order: 10
     }) : null);
     formfields.push(this.isFieldEnabled('postalCode') ? new InputBase({
@@ -216,7 +222,7 @@ export class ClientAddressStepComponent {
    * Returns the array of client addresses
    */
   get address() {
-    return { address: this.clientAddressData };
+    return {address: this.clientAddressData};
   }
 
 }
