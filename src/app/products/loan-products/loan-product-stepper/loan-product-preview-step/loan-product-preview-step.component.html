@@ -484,7 +484,7 @@
     <span fxFlex="60%">{{ loanProduct.allowAttributeOverrides.graceOnArrearsAgeing ? 'Yes' : 'No' }}</span>
   </div>
 
-  <div fxFlexFill *ngIf="loanProduct.charges.length" fxLayout="row wrap" fxLayout.lt-md="column">
+  <div fxFlexFill *ngIf="loanProduct?.charges?.length" fxLayout="row wrap" fxLayout.lt-md="column">
 
     <h3 class="mat-h3" fxFlexFill>Charges</h3>
 
