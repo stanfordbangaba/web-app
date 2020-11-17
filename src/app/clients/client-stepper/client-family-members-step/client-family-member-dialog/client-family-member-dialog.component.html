@@ -30,13 +30,13 @@
       <input formControlName="qualification" matInput />
     </mat-form-field>
 
-    <mat-form-field fxFlex="48%">
-      <mat-label>Age</mat-label>
-      <input type="number" formControlName="age" matInput />
-      <mat-error *ngIf="familyMemberForm.controls.age.hasError('required')">
-        Age is <strong>required</strong>
-      </mat-error>
-    </mat-form-field>
+<!--    <mat-form-field fxFlex="48%">-->
+<!--      <mat-label>Age</mat-label>-->
+<!--      <input type="number" formControlName="age" required matInput />-->
+<!--      <mat-error *ngIf="familyMemberForm.controls.age.hasError('required')">-->
+<!--        Age is <strong>required</strong>-->
+<!--      </mat-error>-->
+<!--    </mat-form-field>-->
 
     <mat-checkbox formControlName="isDependent" labelPosition="before" fxFlex="48%">Is Dependent?</mat-checkbox>
 
@@ -54,7 +54,7 @@
 
     <mat-form-field fxFlex="48%">
       <mat-label>Gender</mat-label>
-      <mat-select formControlName="genderId">
+      <mat-select formControlName="genderId" required>
         <mat-option *ngFor="let gender of data.options.genderIdOptions" [value]="gender.id">
           {{ gender.name }}
         </mat-option>
@@ -86,7 +86,7 @@
 
     <mat-form-field fxFlex="98%">
       <mat-label>Date Of Birth</mat-label>
-      <input formControlName="dateOfBirth" matInput [min]="minDate" [max]="maxDate" [matDatepicker]="dueDatePicker">
+      <input formControlName="dateOfBirth" required matInput [max]="maxDate" [matDatepicker]="dueDatePicker">
       <mat-datepicker-toggle matSuffix [for]="dueDatePicker"></mat-datepicker-toggle>
       <mat-datepicker #dueDatePicker></mat-datepicker>
       <mat-error *ngIf="familyMemberForm.controls.dateOfBirth.hasError('required')">

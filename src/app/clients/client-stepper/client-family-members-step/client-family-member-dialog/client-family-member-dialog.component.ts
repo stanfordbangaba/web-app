@@ -94,9 +94,16 @@ export class ClientFamilyMemberDialogComponent implements OnInit {
       }
     }
     if (familyMember.dateOfBirth) {
+      familyMember.age = this._calculateAge(familyMember.dateOfBirth);
       familyMember.dateOfBirth = this.datePipe.transform(familyMember.dateOfBirth, dateFormat);
     }
     return familyMember;
+  }
+
+   _calculateAge(birthday: Date) { // birthday is a date
+    const ageDifMs = Date.now() - birthday.getTime();
+    const ageDate = new Date(ageDifMs); // miliseconds from epoch
+    return Math.abs(ageDate.getUTCFullYear() - 1970);
   }
 
 }
