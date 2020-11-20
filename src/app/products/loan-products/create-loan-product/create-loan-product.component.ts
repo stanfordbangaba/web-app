@@ -84,7 +84,7 @@ export class CreateLoanProductComponent implements OnInit {
     const dateFormat = 'yyyy-MM-dd';
     const loanProduct = {
       ...this.loanProduct,
-      charges: this.loanProduct.charges.map((charge: any) => ({ id: charge.id })),
+      charges: this.loanProduct.charges ? this.loanProduct.charges.map((charge: any) => ({ id: charge.id })) : [],
       dateFormat,
       locale: 'en'
     };
