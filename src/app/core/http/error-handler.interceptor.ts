@@ -41,7 +41,7 @@ export class ErrorHandlerInterceptor implements HttpInterceptor {
     const status = response.status;
 
     console.log(`Http Error Response is: ${JSON.stringify(response)}`);
-    
+
     let errorMessage = (response.error.developerMessage || response.message);
     if (response.error.errors) {
       if (response.error.errors[0]) {
