@@ -42,10 +42,13 @@ export class ErrorHandlerInterceptor implements HttpInterceptor {
 
     console.log(`Http Error Response is: ${JSON.stringify(response)}`);
 
-    let errorMessage = (response.error.developerMessage || response.message);
-    if (response.error.errors) {
-      if (response.error.errors[0]) {
-        errorMessage = response.error.errors[0].defaultUserMessage || response.error.errors[0].developerMessage;
+    let errorMessage = '';
+    if (response.error) {
+      errorMessage = (response.error.developerMessage || response.message);
+      if (response.error.errors) {
+        if (response.error.errors[0]) {
+          errorMessage = response.error.errors[0].defaultUserMessage || response.error.errors[0].developerMessage;
+        }
       }
     }
 
