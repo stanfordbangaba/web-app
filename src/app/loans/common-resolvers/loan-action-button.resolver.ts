@@ -60,6 +60,8 @@ export class LoanActionButtonResolver implements Resolve<Object> {
             return this.loansService.getLoanApprovalTemplate(loanId);
         } else if (loanActionButton === 'Add Loan Charge') {
             return this.loansService.getLoanChargeTemplateResource(loanId);
+        } else if (loanActionButton === 'Make Repayment') {
+            return this.loansService.getLoanActionTemplate(loanId, 'recoverypayment');
         } else {
             return undefined;
         }

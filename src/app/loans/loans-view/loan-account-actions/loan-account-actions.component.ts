@@ -68,6 +68,7 @@ export class LoanAccountActionsComponent {
   constructor(private router: Router,
     private route: ActivatedRoute) {
       this.route.data.subscribe(( data: { actionButtonData: any }) => {
+        console.log(`Action button data: ${JSON.stringify(data.actionButtonData)}`);
         this.actionButtonData = data.actionButtonData;
       });
 

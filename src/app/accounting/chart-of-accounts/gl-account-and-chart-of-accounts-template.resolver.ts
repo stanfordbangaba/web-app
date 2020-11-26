@@ -31,15 +31,15 @@ export class GlAccountAndChartOfAccountsTemplateResolver implements Resolve<Obje
       map((glAccountData: any) => {
         let accountOptions = [];
         switch (glAccountData.type.value) {
-          case 'ASSET': accountOptions = glAccountData.assetHeaderAccountOptions;
+          case 'ASSET': accountOptions = glAccountData.assetHeaderAccountOptions ? glAccountData.assetHeaderAccountOptions : [];
           break;
-          case 'EQUITY': accountOptions = glAccountData.equityHeaderAccountOptions;
+          case 'EQUITY': accountOptions = glAccountData.equityHeaderAccountOptions ? glAccountData.equityHeaderAccountOptions : [];
           break;
-          case 'EXPENSE': accountOptions = glAccountData.expenseHeaderAccountOptions;
+          case 'EXPENSE': accountOptions = glAccountData.expenseHeaderAccountOptions ? glAccountData.expenseHeaderAccountOptions : [];
           break;
-          case 'INCOME': accountOptions = glAccountData.incomeHeaderAccountOptions;
+          case 'INCOME': accountOptions = glAccountData.incomeHeaderAccountOptions ? glAccountData.incomeHeaderAccountOptions : [];
           break;
-          case 'LIABILITY': accountOptions = glAccountData.liabilityHeaderAccountOptions;
+          case 'LIABILITY': accountOptions = glAccountData.liabilityHeaderAccountOptions ? glAccountData.liabilityHeaderAccountOptions : [];
           break;
         }
         glAccountData.parent = accountOptions.find((accountOption: any) => {
