@@ -11,8 +11,9 @@ export const environment = {
   version: env.npm_package_version + '-dev',
   // fineractPlatformTenantId: 'default',  // For connecting to server running elsewhere update the tenant identifier
   // baseApiUrl: 'https://dev.mifos.io',  // For connecting to server running elsewhere update the base API URL
+  // baseApiUrl: 'https://demo.fineract.dev',  // For connecting to server running elsewhere update the base API URL
   fineractPlatformTenantId: 'default',  // For connecting to server running elsewhere update the tenant identifier
-  baseApiUrl: 'https://demo.fineract.dev',  // For connecting to server running elsewhere update the base API URL
+  baseApiUrl: 'https://localhost:8443',  // For connecting to server running elsewhere update the base API URL
   apiProvider: '/fineract-provider/api',
   apiVersion: '/v1',
   serverUrl: '',
