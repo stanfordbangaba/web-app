@@ -134,6 +134,7 @@ export class ClientAddressStepComponent {
    */
   getAddressFormFields(address?: any) {
     const addressOptions = this.clientTemplate.address[0];
+    console.log(addressOptions);
     let formfields: FormfieldBase[] = [];
     formfields.push(this.isFieldEnabled('addressType') ? new SelectBase({
       controlName: 'addressTypeId',
