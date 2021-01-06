@@ -32,8 +32,8 @@ export class ViewProvisioningJournalEntriesComponent implements OnInit {
    * @param {ActivatedRoute} route Activated Route.
    */
   constructor(private route: ActivatedRoute) {
-    this.route.data.subscribe((data: { provisioningJournalEntry: any }) => {
-      this.provisioningJournalEntryData = data.provisioningJournalEntry.pageItems;
+    this.route.data.subscribe((data: { provisioningJournalEntries: any }) => {
+      this.provisioningJournalEntryData = data.provisioningJournalEntries.pageItems;
     });
   }
 

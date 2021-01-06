@@ -25,6 +25,7 @@ export class ProvisioningEntryEntriesResolver implements Resolve<Object> {
    */
   resolve(route: ActivatedRouteSnapshot): Observable<any> {
     const provisioningEntryId = route.paramMap.get('id');
+    console.log(`In ProvisioningEntryEntriesResolver. Param provisioningEntryId is ${provisioningEntryId}`);
     return this.accountingService.getProvisioningEntryEntries(provisioningEntryId);
   }
 
