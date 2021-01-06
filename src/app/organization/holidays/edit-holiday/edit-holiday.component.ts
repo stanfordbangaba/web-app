@@ -28,7 +28,7 @@ export class EditHolidayComponent implements OnInit {
   /** Minimum Date allowed. */
   minDate = new Date(2000, 0, 1);
   /** Maximum Date allowed. */
-  maxDate = new Date();
+  maxDate = new Date(new Date().setFullYear(new Date().getFullYear() + 10));
 
   /**
    * Get holiday and holiday template from `Resolver`.
