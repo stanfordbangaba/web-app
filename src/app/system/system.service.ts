@@ -261,6 +261,14 @@ export class SystemService {
     return this.http.put(`/jobs/${jobId}`, job);
   }
 
+  /**
+   * @param {string} jobId Job ID of Job to be executed.
+   * @returns {Observable<any>}
+   */
+  runJob(jobId: string): Observable<any> {
+    return this.http.post(`/jobs/${jobId}?command=executeJob`, {});
+  }
+
   /*
    * @param jobId Job Id to view the history.
    * @returns {Observable<any>} Fetches History of the Job.
