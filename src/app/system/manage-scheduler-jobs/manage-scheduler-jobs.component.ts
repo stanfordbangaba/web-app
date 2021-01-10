@@ -8,6 +8,7 @@ import { SelectionModel } from '@angular/cdk/collections';
 
 /** rxjs Imports */
 import { of } from 'rxjs';
+import {SystemService} from '../system.service';
 
 /**
  * Manage scheduler jobs component.
@@ -28,7 +29,7 @@ export class ManageSchedulerJobsComponent implements OnInit {
   /** Data source for manage scheduler jobs table. */
   dataSource: MatTableDataSource<any>;
   /** Initialize Selection */
-  selection = new SelectionModel<any>(true, []);
+  selection = new SelectionModel<any>(false, []);
 
   /** Paginator for table. */
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
@@ -39,7 +40,8 @@ export class ManageSchedulerJobsComponent implements OnInit {
    * Retrieves the scheduler jobs data from `resolve`.
    * @param {ActivatedRoute} route Activated Route.
    */
-  constructor(private route: ActivatedRoute) {
+  constructor(private route: ActivatedRoute,
+              private systemService: SystemService) {
     this.route.data.subscribe((data: { jobsScheduler: any }) => {
       this.jobData = data.jobsScheduler[0];
       this.schedulerData = data.jobsScheduler[1];
@@ -97,4 +99,15 @@ export class ManageSchedulerJobsComponent implements OnInit {
     this.dataSource.sort = this.sort;
   }
 
+  runJob() {
+    const job = this.selection.selected;
+    // console.log(`Selected job: ${JSON.stringify(job)}`);
+    if (job.length) {
+      this.systemService.runJob(job[0].jobId).subscribe(value => {
+        console.log(`Run job response: ${JSON.stringify(value)}`);
+      });
+    } else {
+      console.log(`Empty selection.`);
+    }
+  }
 }
