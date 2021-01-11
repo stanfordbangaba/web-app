@@ -5,9 +5,9 @@
     <button mat-raised-button color="primary" [routerLink]="['export']">
       Export
     </button>
-    <button mat-raised-button color="primary">
-      View Journal Entries
-    </button>
+<!--    <button mat-raised-button color="primary">-->
+<!--      View Journal Entries-->
+<!--    </button>-->
   </div>
 
   <table mat-table [dataSource]="showTransactionsData">
@@ -69,10 +69,10 @@
             [routerLink]="[transaction.id, 'reciept']" matTooltip="View Receipts">
             <i class="fa fa-file-text"></i>
           </button>
-          <button class="account-action-button" mat-raised-button color="primary" matTooltip="View Journal Entries" matTooltipPosition="left"
-            (click)="routeEdit($event)" >
-            <i class="fa fa-arrow-circle-right"></i>
-          </button>
+<!--          <button class="account-action-button" mat-raised-button color="primary" matTooltip="View Journal Entries" matTooltipPosition="left"-->
+<!--            (click)="routeEdit($event)" >-->
+<!--            <i class="fa fa-arrow-circle-right"></i>-->
+<!--          </button>-->
         </td>
       </ng-container>
 
