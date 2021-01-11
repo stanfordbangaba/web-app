@@ -148,11 +148,11 @@ export class WebAppComponent implements OnInit {
     }
     if (!localStorage.getItem('mifosXServers')) {
       this.settingsService.setServers([
-        'https://dev.mifos.io',
-        'https://demo.mifos.io',
-        'https://staging.mifos.io',
-        'https://mobile.mifos.io',
-        'https://demo.fineract.dev',
+        // 'https://dev.mifos.io',
+        // 'https://demo.mifos.io',
+        // 'https://staging.mifos.io',
+        // 'https://mobile.mifos.io',
+        // 'https://demo.fineract.dev',
         'https://localhost:8443'
       ]);
     }
