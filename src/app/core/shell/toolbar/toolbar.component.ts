@@ -84,7 +84,8 @@ export class ToolbarComponent implements OnInit {
    * Opens Mifos JIRA Wiki page.
    */
   help() {
-    window.open('https://mifosforge.jira.com/wiki/spaces/docs/pages/52035622/User+Manual', '_blank');
+    console.log(`User manual documentation is required.`);
+    // window.open('https://mifosforge.jira.com/wiki/spaces/docs/pages/52035622/User+Manual', '_blank');
   }
 
 }
