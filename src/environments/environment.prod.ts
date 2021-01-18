@@ -5,7 +5,8 @@ export const environment = {
   production: true,
   version: env.mifos_x_version,
   fineractPlatformTenantId: 'default',  // For connecting to server running elsewhere update the tenant identifier
-  baseApiUrl: JSON.parse(localStorage.getItem('mifosXServerURL')) || 'https://demo.fineract.dev',  // For connecting to server running elsewhere update the base API URL
+  // baseApiUrl: JSON.parse(localStorage.getItem('mifosXServerURL')) || 'https://demo.fineract.dev',  // For connecting to server running elsewhere update the base API URL
+  baseApiUrl: JSON.parse(localStorage.getItem('mifosXServerURL')) || 'https://41.78.78.238:8443',  // For connecting to server running elsewhere update the base API URL
   allowServerSwitch: env.allow_switching_backend_instance,
   apiProvider: '/fineract-provider/api',
   apiVersion: '/v1',
@@ -16,8 +17,7 @@ export const environment = {
   },
   defaultLanguage: 'en-US',
   supportedLanguages: [
-    'en-US',
-    'fr-FR'
+    'en-US'
   ]
 };
 
