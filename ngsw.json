@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1610953322193,
+  "timestamp": 1610964298919,
   "index": "/web-app/index.html",
   "assetGroups": [
     {
@@ -121,7 +121,7 @@
     "/web-app/common.js": "a050732a86c7f6a22a00e7d36a730095d2b47710",
     "/web-app/favicon.ico": "497b5187aa15c583d7e76c7739482adb0e766f0d",
     "/web-app/index.html": "eb9ccb2a394a15bfa663fec11b9a7bac11fd2f8f",
-    "/web-app/main.js": "074da258d40684406996b2211ebf56cfb009f781",
+    "/web-app/main.js": "ea97eddf19dee8dcaea9d048ef40d8fa965125a2",
     "/web-app/polyfills-es5.js": "34d3bb02851d834ef1b39c6a4e888f868116c3bf",
     "/web-app/polyfills.js": "3ac51116a418c3e4f1b94df8fa7e9f5903c7fcc1",
     "/web-app/runtime.js": "63538fb89430e8954344b4a9feb642849a87ccec",
