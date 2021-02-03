@@ -1,0 +1,17 @@
+# Install WEB
+docker run --name lms-web --restart=always -d -p 4200:80 anotida/web-app
+
+#Install CORE
+docker run --name lms-core --restart=always --network=host -d -e DRIVERCLASS_NAME=org.drizzle.jdbc.DrizzleDriver \
+      -e PROTOCOL=jdbc   \
+      -e SUB_PROTOCOL=mysql:thin    \
+      -e fineract_tenants_driver=org.drizzle.jdbc.DrizzleDriver    \
+      -e fineract_tenants_url=jdbc:mysql:thin://localhost:3306/fineract_tenants     \
+      -e fineract_tenants_uid=root  \
+      -e fineract_tenants_pwd=mysql  \
+      -e FINERACT_DEFAULT_TENANTDB_HOSTNAME=localhost  \
+      -e FINERACT_DEFAULT_TENANTDB_PORT=3306   \
+      -e FINERACT_DEFAULT_TENANTDB_UID=root    \docker
+      -e FINERACT_DEFAULT_TENANTDB_PWD=mysql   \
+      -e FINERACT_DEFAULT_TENANTDB_CONN_PARAMS=   \
+      anotida/esol-core
