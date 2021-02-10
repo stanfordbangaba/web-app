@@ -7,7 +7,8 @@ export const environment = {
   version: '0.0.0',
   fineractPlatformTenantId: 'default',  // For connecting to server running elsewhere update the tenant identifier
   // baseApiUrl: JSON.parse(localStorage.getItem('mifosXServerURL')) || 'https://demo.fineract.dev',  // For connecting to server running elsewhere update the base API URL
-  baseApiUrl: JSON.parse(localStorage.getItem('mifosXServerURL')) || 'https://41.78.78.238:8443',  // For connecting to server running elsewhere update the base API URL
+  // baseApiUrl: JSON.parse(localStorage.getItem('mifosXServerURL')) || 'https://41.78.78.238:8443',  // For connecting to server running elsewhere update the base API URL
+  baseApiUrl: window['env']['baseApiUrl'] || 'default',
   // allowServerSwitch: env.allow_switching_backend_instance,
   allowServerSwitch: false,
   apiProvider: '/fineract-provider/api',

@@ -1,6 +1,6 @@
 <div fxLayout="row" fxLayoutAlign="end" fxLayoutGap="2%" fxLayout.lt-md="column" class="container m-b-20">
   <span *mifosxHasPermission="'ACTIVATE_HOLIDAY'">
-    <button mat-raised-button color="accent" *ngIf="holidayData.status.value !== 'Active'">
+    <button mat-raised-button color="accent" (click)="activateHoliday()" *ngIf="holidayData.status.value !== 'Active'">
       <fa-icon icon="lock-open"></fa-icon>&nbsp;&nbsp;
       Activate
     </button>
@@ -57,6 +57,14 @@
 
         <div fxFlex="50%" *ngIf="holidayData.repaymentsRescheduledTo === undefined || holidayData.repaymentsRescheduledTo === null">
           Next Repayment Date
+        </div>
+
+        <div fxFlex="50%" class="header">
+          Status
+        </div>
+
+        <div fxFlex="50%">
+          {{ holidayData.status.value }}
         </div>
 
       </div>

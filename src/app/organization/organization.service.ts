@@ -1,12 +1,12 @@
 /** Angular Imports */
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {HttpClient, HttpParams} from '@angular/common/http';
 
 /** rxjs Imports */
-import { Observable } from 'rxjs';
+import {Observable} from 'rxjs';
 
 /** Custom Imports. */
-import { SettingsService } from 'app/settings/settings.service';
+import {SettingsService} from 'app/settings/settings.service';
 
 /**
  * Organization service.
@@ -19,7 +19,8 @@ export class OrganizationService {
   /**
    * @param {HttpClient} http Http Client to send requests.
    */
-  constructor(private http: HttpClient, private settingsService: SettingsService) { }
+  constructor(private http: HttpClient, private settingsService: SettingsService) {
+  }
 
   /**
    * @returns {Observable<any>} Loan Provisioning Criteria data
@@ -41,7 +42,7 @@ export class OrganizationService {
    */
   getProvisioningCriteria(provisioningId: string, template: boolean = false): Observable<any> {
     const httpParams = new HttpParams().set('template', template.toString());
-    return this.http.get(`/provisioningcriteria/${provisioningId}`, { params: httpParams });
+    return this.http.get(`/provisioningcriteria/${provisioningId}`, {params: httpParams});
   }
 
   /**
@@ -83,7 +84,7 @@ export class OrganizationService {
    */
   getOfficeTemplate(officeId: string): Observable<any> {
     const httpParams = new HttpParams().set('officeId', officeId.toString());
-    return this.http.get(`/loans/loanreassignment/template`, { params: httpParams });
+    return this.http.get(`/loans/loanreassignment/template`, {params: httpParams});
   }
 
   /**
@@ -93,9 +94,9 @@ export class OrganizationService {
    */
   getOfficerTemplate(officerId: string, officeId: string): Observable<any> {
     const httpParams = new HttpParams()
-                       .set('fromLoanOfficerId', officerId.toString())
-                       .set('officeId', officerId.toString());
-    return this.http.get('/loans/loanreassignment/template', { params: httpParams });
+      .set('fromLoanOfficerId', officerId.toString())
+      .set('officeId', officerId.toString());
+    return this.http.get('/loans/loanreassignment/template', {params: httpParams});
   }
 
   /**
@@ -114,7 +115,7 @@ export class OrganizationService {
    */
   getOffice(officeId: string, template: boolean = false): Observable<any> {
     const httpParams = new HttpParams().set('template', template.toString());
-    return this.http.get(`/offices/${officeId}`, { params: httpParams });
+    return this.http.get(`/offices/${officeId}`, {params: httpParams});
   }
 
   /**
@@ -134,12 +135,12 @@ export class OrganizationService {
     return this.http.put(`/offices/${officeId}`, office);
   }
 
- /**
-  * @returns {Observable<any>}
-  */
+  /**
+   * @returns {Observable<any>}
+   */
   getOfficeDatatables(): Observable<any> {
     const httpParams = new HttpParams().set('apptable', 'm_office');
-    return this.http.get(`/datatables`, { params: httpParams });
+    return this.http.get(`/datatables`, {params: httpParams});
   }
 
   /**
@@ -149,7 +150,7 @@ export class OrganizationService {
    */
   getOfficeDatatable(officeId: string, datatableName: string): Observable<any> {
     const httpParams = new HttpParams().set('genericResultSet', 'true');
-    return this.http.get(`/datatables/${datatableName}/${officeId}`, { params: httpParams });
+    return this.http.get(`/datatables/${datatableName}/${officeId}`, {params: httpParams});
   }
 
   /**
@@ -160,7 +161,7 @@ export class OrganizationService {
    */
   addOfficeDatatableEntry(officeId: string, datatableName: string, data: any): Observable<any> {
     const httpParams = new HttpParams().set('genericResultSet', 'true');
-    return this.http.post(`/datatables/${datatableName}/${officeId}`, data, { params: httpParams });
+    return this.http.post(`/datatables/${datatableName}/${officeId}`, data, {params: httpParams});
   }
 
   /**
@@ -171,7 +172,7 @@ export class OrganizationService {
    */
   editOfficeDatatableEntry(officeId: string, datatableName: string, data: any): Observable<any> {
     const httpParams = new HttpParams().set('genericResultSet', 'true');
-    return this.http.put(`/datatables/${datatableName}/${officeId}`, data, { params: httpParams });
+    return this.http.put(`/datatables/${datatableName}/${officeId}`, data, {params: httpParams});
   }
 
   /**
@@ -181,7 +182,7 @@ export class OrganizationService {
    */
   deleteDatatableContent(officeId: string, datatableName: string): Observable<any> {
     const httpParams = new HttpParams().set('genericResultSet', 'true');
-    return this.http.delete(`/datatables/${datatableName}/${officeId}`, { params: httpParams });
+    return this.http.delete(`/datatables/${datatableName}/${officeId}`, {params: httpParams});
   }
 
   /**
@@ -189,7 +190,7 @@ export class OrganizationService {
    */
   getEmployees(): Observable<any> {
     const httpParams = new HttpParams().set('status', 'all');
-    return this.http.get('/staff', { params: httpParams });
+    return this.http.get('/staff', {params: httpParams});
   }
 
   /**
@@ -207,7 +208,7 @@ export class OrganizationService {
    */
   getEmployee(employeeId: string, template: boolean = true): Observable<any> {
     const httpParams = new HttpParams().set('template', template.toString());
-    return this.http.get(`/staff/${employeeId}`, { params: httpParams });
+    return this.http.get(`/staff/${employeeId}`, {params: httpParams});
   }
 
   /**
@@ -279,7 +280,7 @@ export class OrganizationService {
    */
   executeSmsCampaignCommand(campaignId: string, data: any, command: string): Observable<any> {
     const httpParams = new HttpParams().set('command', command.toString());
-    return this.http.post(`/smscampaigns/${campaignId}`, data, { params: httpParams });
+    return this.http.post(`/smscampaigns/${campaignId}`, data, {params: httpParams});
   }
 
   /**
@@ -293,7 +294,7 @@ export class OrganizationService {
       .set('dateFormat', SMS.dateFormat);
     httpParams = SMS.fromDate ? httpParams.set('fromDate', SMS.fromDate) : httpParams;
     httpParams = SMS.toDate ? httpParams.set('toDate', SMS.toDate) : httpParams;
-    return this.http.get(`/sms/${SMS.id}/messageByStatus`, { params: httpParams });
+    return this.http.get(`/sms/${SMS.id}/messageByStatus`, {params: httpParams});
   }
 
   /**
@@ -324,7 +325,7 @@ export class OrganizationService {
    */
   getAdhocQueryAndTemplate(adhocQueryId: string): Observable<any> {
     const httpParams = new HttpParams().set('template', 'true');
-    return this.http.get(`/adhocquery/${adhocQueryId}`, { params: httpParams });
+    return this.http.get(`/adhocquery/${adhocQueryId}`, {params: httpParams});
   }
 
   /**
@@ -392,7 +393,7 @@ export class OrganizationService {
    */
   getCashierSummaryAndTransactions(tellerId: string, cashierId: string, currencyCode: string): Observable<any> {
     const httpParams = new HttpParams().set('currencyCode', currencyCode);
-    return this.http.get(`/tellers/${tellerId}/cashiers/${cashierId}/summaryandtransactions`, { params: httpParams });
+    return this.http.get(`/tellers/${tellerId}/cashiers/${cashierId}/summaryandtransactions`, {params: httpParams});
   }
 
   /**
@@ -543,7 +544,7 @@ export class OrganizationService {
     const httpParams = new HttpParams()
       .set('offset', offset.toString())
       .set('limit', limit.toString());
-    return this.http.get('/entityDatatableChecks', { params: httpParams });
+    return this.http.get('/entityDatatableChecks', {params: httpParams});
   }
 
   /**
@@ -591,7 +592,7 @@ export class OrganizationService {
   getHolidays(officeId: string): Observable<any> {
     const httpParams = new HttpParams()
       .set('officeId', officeId.toString());
-    return this.http.get('/holidays', { params: httpParams });
+    return this.http.get('/holidays', {params: httpParams});
   }
 
   /**
@@ -637,6 +638,15 @@ export class OrganizationService {
    */
   deleteHoliday(holidayId: string): Observable<any> {
     return this.http.delete(`/holidays/${holidayId}`);
+  }
+
+  /**
+   * Activate Holiday
+   */
+
+  activateHoliday(holidayId: string, holidayData: any): Observable<any> {
+    const httpParams = new HttpParams().set('command', 'activate');
+    return this.http.post(`/holidays/${holidayId}`, holidayData, {params: httpParams});
   }
 
   /**
@@ -686,7 +696,7 @@ export class OrganizationService {
   getStaff(officeId: any): Observable<any> {
     const httpParams = new HttpParams()
       .set('officeId', officeId.toString());
-    return this.http.get('/staff', { params: httpParams });
+    return this.http.get('/staff', {params: httpParams});
   }
 
   /**
@@ -695,7 +705,7 @@ export class OrganizationService {
    */
   getImports(entity: string): Observable<any> {
     const httpParams = new HttpParams().set('entityType', entity);
-    return this.http.get('/imports', { params: httpParams } );
+    return this.http.get('/imports', {params: httpParams});
   }
 
   /**
@@ -730,7 +740,7 @@ export class OrganizationService {
         httpParams = httpParams.set(key, instruction[key]);
       }
     }
-    return this.http.get(`/standinginstructionrunhistory`, { params: httpParams });
+    return this.http.get(`/standinginstructionrunhistory`, {params: httpParams});
   }
 
   /**
@@ -754,7 +764,11 @@ export class OrganizationService {
     if (legalFormType.length) {
       httpParams = httpParams.set('legalFormType', legalFormType);
     }
-    return this.http.get(`${urlSuffix}/downloadtemplate`, { params: httpParams, responseType: 'arraybuffer', observe: 'response'} );
+    return this.http.get(`${urlSuffix}/downloadtemplate`, {
+      params: httpParams,
+      responseType: 'arraybuffer',
+      observe: 'response'
+    });
   }
 
   /**
@@ -764,8 +778,12 @@ export class OrganizationService {
   getImportDocument(id: any): Observable<any> {
     const httpParams = new HttpParams()
       .set('importDocumentId', id)
-      .set('tenantIdentifier', 'default' );
-    return this.http.get('/imports/downloadOutputTemplate', { params: httpParams, responseType: 'arraybuffer', observe: 'response'});
+      .set('tenantIdentifier', 'default');
+    return this.http.get('/imports/downloadOutputTemplate', {
+      params: httpParams,
+      responseType: 'arraybuffer',
+      observe: 'response'
+    });
   }
 
   /**
@@ -783,7 +801,7 @@ export class OrganizationService {
     formData.append('file', file);
     formData.append('locale', this.settingsService.language.code);
     formData.append('datefFormat', this.settingsService.dateFormat);
-    return this.http.post(`${urlSuffix}/uploadtemplate`, formData , { params: httpParams } );
+    return this.http.post(`${urlSuffix}/uploadtemplate`, formData, {params: httpParams});
   }
 
 }

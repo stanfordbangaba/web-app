@@ -15,12 +15,13 @@
     </mat-form-field>
 
     <mat-form-field fxFlex="48%">
-      <mat-label>Staff</mat-label>
+      <mat-label>Staff <small>[Assign staff for this client]</small></mat-label>
       <mat-select formControlName="staffId">
         <mat-option *ngFor="let staff of staffOptions" [value]="staff.id">
           {{ staff.displayName }}
         </mat-option>
       </mat-select>
+
     </mat-form-field>
 
     <mat-form-field fxFlex="48%">

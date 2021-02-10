@@ -1,6 +1,6 @@
 # Install WEB
-docker run --name lms-web --restart=always -d -p 4200:80 anotida/web-app
-
+# docker run --name lms-web --restart=always -d -p 4200:80 anotida/web-app
+docker run --name lms-web --restart=always -d -p 4200:80 -e API_URL="https://192.168.18.45:8443"  web-app
 #Install CORE
 docker run --name lms-core --restart=always --network=host -d -e DRIVERCLASS_NAME=org.drizzle.jdbc.DrizzleDriver \
       -e PROTOCOL=jdbc   \

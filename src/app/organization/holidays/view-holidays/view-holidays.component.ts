@@ -1,13 +1,14 @@
 /** Angular Imports. */
-import { Component } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { MatDialog } from '@angular/material/dialog';
+import {Component} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
+import {MatDialog} from '@angular/material/dialog';
 
 /** Custom Services. */
-import { OrganizationService } from 'app/organization/organization.service';
+import {OrganizationService} from 'app/organization/organization.service';
 
 /** Custom Components. */
-import { DeleteDialogComponent } from '../../../shared/delete-dialog/delete-dialog.component';
+import {DeleteDialogComponent} from '../../../shared/delete-dialog/delete-dialog.component';
+import {ConfirmationDialogComponent} from '../../../shared/confirmation-dialog/confirmation-dialog.component';
 
 /**
  * View Holidays component.
@@ -29,8 +30,8 @@ export class ViewHolidaysComponent {
   constructor(private route: ActivatedRoute,
               private router: Router,
               private dialog: MatDialog,
-              private organizationService: OrganizationService ) {
-    this.route.data.subscribe((data: { holidays: any}) => {
+              private organizationService: OrganizationService) {
+    this.route.data.subscribe((data: { holidays: any }) => {
       this.holidayData = data.holidays;
     });
   }
@@ -40,13 +41,36 @@ export class ViewHolidaysComponent {
    */
   deleteHoliday() {
     const deleteHolidayDialogRef = this.dialog.open(DeleteDialogComponent, {
-      data: { deleteContext: `holiday ${this.holidayData.id}` }
+      data: {deleteContext: `holiday ${this.holidayData.id}`}
     });
     deleteHolidayDialogRef.afterClosed().subscribe((response: any) => {
       if (response.delete) {
         this.organizationService.deleteHoliday(this.holidayData.id)
           .subscribe(() => {
-            this.router.navigate(['../'], { relativeTo: this.route });
+            this.router.navigate(['../'], {relativeTo: this.route});
+          });
+      }
+    });
+  }
+
+  /**
+   * Activate Holiday
+   */
+  activateHoliday() {
+    const activateHolidayDialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      data: {
+        heading: 'Activate Holiday',
+        dialogContext: `Are you sure, you want to activate the holiday ${this.holidayData.name}`
+      }
+    });
+    activateHolidayDialogRef.afterClosed().subscribe(value => {
+      if (value.confirm) {
+        this.organizationService.activateHoliday(this.holidayData.id, {})
+          .subscribe(value1 => {
+            console.log(`Activate response: `, JSON.stringify(value1));
+            this.router.navigateByUrl('/organization', {skipLocationChange: true})
+              .then(() => this.router.navigate(['/organization/holidays', this.holidayData.id]));
+            // this.router.navigate(['/organization/holidays', this.holidayData.id]);
           });
       }
     });
