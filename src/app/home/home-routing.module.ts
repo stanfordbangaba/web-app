@@ -20,7 +20,7 @@ const routes: Routes = [
   Route.withShell([
     {
       path: '',
-      redirectTo: '/dashboard',
+      redirectTo: '/routes',
       pathMatch: 'full'
     },
     {
