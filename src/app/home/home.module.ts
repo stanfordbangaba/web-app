@@ -6,6 +6,7 @@ import { DatePipe } from '@angular/common';
 import { SharedModule } from '../shared/shared.module';
 import { HomeRoutingModule } from './home-routing.module';
 import { PipesModule } from '../pipes/pipes.module';
+import { DirectivesModule } from 'app/directives/directives.module';
 
 /** Custom Components */
 import { HomeComponent } from './home.component';
@@ -23,6 +24,7 @@ import { ClientTrendsBarComponent } from './dashboard/client-trends-bar/client-t
   imports: [
     SharedModule,
     PipesModule,
+    DirectivesModule,
     HomeRoutingModule
   ],
   declarations: [
