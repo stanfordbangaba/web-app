@@ -618,6 +618,7 @@ export class OrganizationService {
    * @returns {Observable<any>}
    */
   createHoliday(holidayData: any): Observable<any> {
+    console.log(`Before post: ${JSON.stringify(holidayData)}`);
     return this.http.post('/holidays', holidayData);
   }
 

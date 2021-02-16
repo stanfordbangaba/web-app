@@ -65,6 +65,7 @@ import { EditTransactionComponent } from './loans-view/transactions/edit-transac
 import { LoansAccountViewGuarantorDetailsDialogComponent } from './custom-dialog/loans-account-view-guarantor-details-dialog/loans-account-view-guarantor-details-dialog.component';
 import { LoansAccountAddCollateralDialogComponent } from './custom-dialog/loans-account-add-collateral-dialog/loans-account-add-collateral-dialog.component';
 import { LoanAccountLoadDocumentsDialogComponent } from './custom-dialog/loan-account-load-documents-dialog/loan-account-load-documents-dialog.component';
+import {ViewMandatesComponent} from './loans-view/loan-account-actions/mandate/view-mandates.component';
 
 /**
  * Loans Module
@@ -109,6 +110,7 @@ import { LoanAccountLoadDocumentsDialogComponent } from './custom-dialog/loan-ac
     LoansAccountAddCollateralDialogComponent,
     RecoveryRepaymentComponent,
     ViewGuarantorsComponent,
+    ViewMandatesComponent,
     CreateGuarantorComponent,
     LoansAccountViewGuarantorDetailsDialogComponent,
     DisburseLoanAccountComponent,

@@ -8,8 +8,11 @@ RUN npm run build --prod
 
 # Stage 1:
 FROM nginx:latest
+RUN rm -rf /usr/share/nginx/html/* && rm -rf /etc/nginx/nginx.conf
+COPY ./default.conf /etc/nginx/conf.d/default.conf
+COPY ./nginx.conf /etc/nginx/nginx.conf
 COPY --from=build /app/dist/web-app  /usr/share/nginx/html
-#COPY nginx.conf /etc/nginx/conf.d/default.conf
+
 
 EXPOSE 80
 

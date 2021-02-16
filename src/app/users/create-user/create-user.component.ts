@@ -109,6 +109,7 @@ export class CreateUserComponent implements OnInit {
    */
   submit() {
     const user = this.userForm.value;
+    console.log(`User request: ${JSON.stringify(user)}`);
     this.usersService.createUser(user).subscribe((response: any) => {
       this.router.navigate(['../', response.resourceId], { relativeTo: this.route });
     });

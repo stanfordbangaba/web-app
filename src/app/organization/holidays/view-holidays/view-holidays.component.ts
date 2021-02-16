@@ -33,6 +33,7 @@ export class ViewHolidaysComponent {
               private organizationService: OrganizationService) {
     this.route.data.subscribe((data: { holidays: any }) => {
       this.holidayData = data.holidays;
+      console.log(`Holiday data: ${JSON.stringify(this.holidayData)}`);
     });
   }
 
@@ -68,12 +69,15 @@ export class ViewHolidaysComponent {
         this.organizationService.activateHoliday(this.holidayData.id, {})
           .subscribe(value1 => {
             console.log(`Activate response: `, JSON.stringify(value1));
-            this.router.navigateByUrl('/organization', {skipLocationChange: true})
-              .then(() => this.router.navigate(['/organization/holidays', this.holidayData.id]));
+            this.refresh();
             // this.router.navigate(['/organization/holidays', this.holidayData.id]);
           });
       }
     });
+  }
+
+  refresh(): void {
+    window.location.reload();
   }
 
 }

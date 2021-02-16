@@ -1,0 +1,185 @@
+<div class="container">
+
+  <mat-card>
+
+    <div class="viewMandates-account-tables" fxLayout="row" fxLayoutGap="2%">
+
+      <div fxFlex="49%">
+        <table>
+          <tbody>
+            <tr>
+              <td>Disbursement Date</td>
+              <td>{{dataObject.timeline.actualDisbursementDate}}<span
+                  *ngIf="!dataObject.timeline.actualDisbursementDate">Not Available</span></td>
+            </tr>
+            <tr>
+              <td>Currency</td>
+              <td>{{dataObject.currency.name}}</td>
+            </tr>
+            <tr>
+              <td>Loan Officer</td>
+              <td>
+                {{dataObject.loanOfficerName}} <span *ngIf="!dataObject.loanOfficerName">Unassigned</span>
+              </td>
+            </tr>
+            <tr>
+              <td>External Id</td>
+              <td>{{dataObject.externalId}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div fxFlex="49%">
+        <table>
+          <tbody>
+            <tr>
+              <td>Loan Purpose</td>
+              <td>
+                {{dataObject.loanPurposeName}} <span *ngIf="!dataObject.loanPurposeName"> Not Provided </span>
+              </td>
+            </tr>
+            <tr>
+              <td>Approved Amount</td>
+              <td>
+                <span>{{dataObject.approvedPrincipal | number}}</span>
+              </td>
+            </tr>
+            <tr>
+              <td>Disburse Amount</td>
+              <td>
+                <span>{{dataObject.principal | number}}</span>
+              </td>
+            </tr>
+            <tr>
+              <td>Arrears By</td>
+              <td>{{dataObject.summary.totalOverdue | number}}
+                <span *ngIf="dataObject.summary.totalOverdue < 0">Not Provided</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div fxFlexFill *ngIf="mandateDetails" fxLayout="row wrap" fxLayout.lt-md="column">
+
+      <!-- mandates details table -->
+      <div class="headingContent">
+        <div fxLayout="column" fxFlex="50%">
+          <div class="headingName">
+            <h3>Mandates Details</h3>
+          </div>
+        </div>
+        <div fxLayout="column" fxFlex="50%">
+          <div fxLayout="row" fxLayoutAlign="flex-end">
+            <button mat-raised-button class="f-right" color="primary"
+              (click)="toggleMandatesDetailsOverview()">{{showDeletedMandatesAccounts?'Hide Deleted Mandates':'Show Deleted Mandates'}}</button>
+          </div>
+        </div>
+      </div>
+
+      <table fxFlexFill mat-table
+        [dataSource]="mandateDetails|accountsFilter:'mandate':showDeletedMandatesAccounts">
+        <!-- <ng-container *ngIf="expression"> -->
+        <ng-container matColumnDef="fullname">
+          <th mat-header-cell *matHeaderCellDef> Name </th>
+          <td mat-cell *matCellDef="let mandate">
+            <span *ngIf="!mandate.mandateFundingDetails">
+              {{mandate.firstname}} &nbsp; {{mandate.lastname}}
+            </span>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="relationship">
+          <th mat-header-cell *matHeaderCellDef> Relationship </th>
+          <td mat-cell *matCellDef="let mandate">
+            <span *ngIf="!mandate.mandateFundingDetails">
+              {{mandate.clientRelationshipType.name}}
+            </span>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="mandatetype">
+          <th mat-header-cell *matHeaderCellDef> Mandate Type </th>
+          <td mat-cell *matCellDef="let mandate">
+            <span *ngIf="!mandate.mandateFundingDetails">
+              {{mandate.mandateType.value}}
+            </span>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="depositAccount">
+          <th mat-header-cell *matHeaderCellDef> Deposit Account </th>
+          <td mat-cell *matCellDef="let mandate">
+            <span *ngIf="!mandate.mandateFundingDetails">
+
+            </span>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="amount">
+          <th mat-header-cell *matHeaderCellDef> Amount </th>
+          <td mat-cell *matCellDef="let mandate">
+            <span *ngIf="!mandate.mandateFundingDetails">
+
+            </span>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="remainingAmount">
+          <th mat-header-cell *matHeaderCellDef> Remaining Amount </th>
+          <td mat-cell *matCellDef="let mandate">
+            <span *ngIf="!mandate.mandateFundingDetails">
+
+            </span>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="status">
+          <th mat-header-cell *matHeaderCellDef> Status </th>
+          <td mat-cell *matCellDef="let mandate">
+            <span *ngIf="!mandate.mandateFundingDetails">
+              <span *ngIf="mandate.status">
+                Active
+              </span>
+              <span *ngIf="!mandate.status">
+                Deleted
+              </span>
+            </span>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef> Action </th>
+          <td mat-cell *matCellDef="let mandate; let id = index">
+            <span *ngIf="!mandate.mandateFundingDetails">
+              <button mat-raised-button class="account-action-button" color="primary"
+                *mifosxHasPermission="'READ_SAVINGSACCOUNT'" (click)="viewMandateDetails(mandate)">
+                <fa-icon icon="eye"></fa-icon>&nbsp;&nbsp;
+              </button>
+              <button mat-raised-button class="account-action-button" color="primary"
+                *ngIf="mandate.status && mandate.mandateType.id == 3 && mandate.id">
+                <fa-icon icon="edit"></fa-icon>&nbsp;&nbsp;
+              </button>
+              <span *ngIf="mandate.status">
+                <button mat-raised-button class="account-action-button" color="warn"
+                  *mifosxHasPermission='"DELETE_GUARANTOR"' (click)="deleteMandate(mandate.id)">
+                  <fa-icon icon="trash"></fa-icon>&nbsp;&nbsp;
+                </button>
+              </span>
+            </span>
+          </td>
+        </ng-container>
+        <!-- </ng-container> -->
+
+
+        <tr mat-header-row *matHeaderRowDef="mandatesDisplayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: mandatesDisplayedColumns"></tr>
+
+      </table>
+    </div>
+
+  </mat-card>
+
+</div>
