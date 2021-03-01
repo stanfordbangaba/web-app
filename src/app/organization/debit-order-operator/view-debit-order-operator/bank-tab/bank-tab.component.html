@@ -1,0 +1,18 @@
+<div class="tab-container mat-typography">
+
+  <mat-list>
+
+    <mat-list-item>
+      Account Name : {{ bankAccount.accountName ? bankAccount.accountName : 'N/A' }}
+    </mat-list-item>
+
+    <mat-list-item>
+      Account Number : {{ bankAccount.accountNumber ? bankAccount.accountNumber : 'N/A' }}
+    </mat-list-item>
+
+    <mat-list-item>
+      Bank : {{ bankAccount.bank ? bankAccount.bank.code : 'N/A' }}
+    </mat-list-item>
+  </mat-list>
+
+</div>

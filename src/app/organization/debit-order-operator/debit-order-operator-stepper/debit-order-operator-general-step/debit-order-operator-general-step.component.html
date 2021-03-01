@@ -1,0 +1,57 @@
+<form [formGroup]="providerForm">
+
+  <mat-card-content>
+
+    <div fxLayout="column">
+
+      <mat-form-field>
+        <mat-label>Name</mat-label>
+        <input matInput required formControlName="name">
+        <mat-error *ngIf="providerForm.controls.name.hasError('required')">
+          Name is <strong>required</strong>
+        </mat-error>
+        <mat-error *ngIf="providerForm.controls.name.hasError('pattern')">
+          Name <strong>cannot</strong> begin with a special character or number
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Short Name</mat-label>
+        <input matInput required formControlName="shortName">
+        <mat-error *ngIf="providerForm.controls.shortName.hasError('required')">
+          Short Name is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>External ID</mat-label>
+        <input matInput required formControlName="externalId">
+        <mat-error *ngIf="providerForm.controls.externalId.hasError('required')">
+          External ID is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Description</mat-label>
+        <textarea matInput formControlName="description"></textarea>
+      </mat-form-field>
+
+
+    </div>
+
+  </mat-card-content>
+
+  <div fxLayout="row" class="margin-t" fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="2%">
+    <button mat-raised-button matStepperPrevious disabled>
+      <fa-icon icon="arrow-left"></fa-icon>&nbsp;&nbsp;
+      Previous
+    </button>
+    <button mat-raised-button matStepperNext>
+      Next&nbsp;&nbsp;
+      <fa-icon icon="arrow-right"></fa-icon>
+    </button>
+  </div>
+
+</form>
+
+

@@ -25,7 +25,7 @@ export class ViewMandatesComponent implements OnInit {
   mandateDetails: any;
   showDeletedMandatesAccounts = false;
   loanId: any;
-  mandatesDisplayedColumns: string[] = ['fullname', 'relationship', 'mandatetype', 'depositAccount', 'amount', 'remainingAmount', 'status', 'action'];
+  mandatesDisplayedColumns: string[] = ['startDate', 'endDate', 'debitOrderDueDate', 'additionalFee', 'debitOrderMandateNumber', 'debitOrderMandateStatus', 'action'];
 
   /** View and perform various action on existing list of mandates
    * @param {MatDialog} dialog Dialog
@@ -41,7 +41,8 @@ export class ViewMandatesComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.mandateDetails = this.dataObject.guarantors;
+    // this.mandateDetails = this.dataObject.guarantors;
+    this.mandateDetails = [];
   }
 
   toggleMandatesDetailsOverview() {
@@ -61,7 +62,7 @@ export class ViewMandatesComponent implements OnInit {
     });
   }
 
-  viewMandateDetails(mandateData: any) {
+  viewMandateDetail(mandateData: any) {
     // const viewMandateDetailsDialogRef = this.dialog.open(LoansAccountViewMandateDetailsDialogComponent, {
     //   data: { mandateData: mandateData }
     // });

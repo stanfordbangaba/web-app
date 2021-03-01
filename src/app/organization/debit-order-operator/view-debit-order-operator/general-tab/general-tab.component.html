@@ -1,0 +1,32 @@
+<div class="tab-container mat-typography">
+
+  <mat-list>
+
+    <mat-list-item>
+     Name : {{ operatorData.name ? operatorData.name : 'N/A' }}
+    </mat-list-item>
+
+    <mat-list-item>
+     Short Name : {{ operatorData.shortName ? operatorData.shortName : 'N/A' }}
+    </mat-list-item>
+
+    <mat-list-item>
+     External ID : {{ operatorData.externalId ? operatorData.externalId : 'N/A' }}
+    </mat-list-item>
+
+    <mat-list-item>
+     Description : {{ operatorData.description ? operatorData.description : 'N/A' }}
+    </mat-list-item>
+
+    <mat-list-item>
+     Status : {{ operatorData.status ? operatorData.status : 'N/A' }}
+    </mat-list-item>
+
+    <mat-list-item>
+      Created On : {{ operatorData.dateCreated ? (operatorData.dateCreated | date) : 'Unassigned' }}
+    </mat-list-item>
+
+
+  </mat-list>
+
+</div>

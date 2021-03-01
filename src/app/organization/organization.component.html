@@ -72,6 +72,14 @@
             <p matLine>Define Entity Data Table Checks for Organization</p>
           </mat-list-item>
 
+          <mat-list-item [routerLink]="['debit-order-operators']" *mifosxHasPermission="'READ_DEBIT_ORDER_OPERATOR'">
+            <mat-icon matListIcon>
+              <fa-icon icon="sticky-note" size="sm"></fa-icon>
+            </mat-icon>
+            <h4 matLine>Debit Order Operator</h4>
+            <p matLine>Manage Operators For Debit Orders </p>
+          </mat-list-item>
+
         </mat-nav-list>
 
       </div>

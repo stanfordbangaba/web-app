@@ -10,13 +10,12 @@ export const environment = {
   production: false,
   version: env.mifos_x_version + '-dev',
   fineractPlatformTenantId: 'default',  // For connecting to server running elsewhere update the tenant identifier
-  // baseApiUrl: JSON.parse(localStorage.getItem('mifosXServerURL')) || 'https://dev.mifos.io',  // For connecting to server running elsewhere update the base API URL
-  // baseApiUrl: JSON.parse(localStorage.getItem('mifosXServerURL')) || 'https://41.78.78.238:8443',  // For connecting to server running elsewhere update the base API URL
   baseApiUrl: JSON.parse(localStorage.getItem('mifosXServerURL')) || 'https://41.78.78.238:8443',  // For connecting to server running elsewhere update the base API URL
   allowServerSwitch: env.allow_switching_backend_instance,
   apiProvider: '/fineract-provider/api',
   apiVersion: '/v1',
   serverUrl: '',
+  debitOrderServerUrl: '',
   oauth: {
     enabled: false,  // For connecting to Mifos X using OAuth2 Authentication change the value to true
     serverUrl: ''
@@ -30,3 +29,4 @@ export const environment = {
 // Server URL
 environment.serverUrl = `${environment.baseApiUrl}${environment.apiProvider}${environment.apiVersion}`;
 environment.oauth.serverUrl = `${environment.baseApiUrl}${environment.apiProvider}`;
+environment.debitOrderServerUrl = `http://localhost:8090/api/v1`;

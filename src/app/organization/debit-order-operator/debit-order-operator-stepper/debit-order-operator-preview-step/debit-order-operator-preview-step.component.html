@@ -1,0 +1,59 @@
+<div fxLayout="row wrap" fxLayout.lt-md="column">
+
+  <h3 class="mat-h3" fxFlexFill>General</h3>
+
+  <mat-divider fxFlexFill></mat-divider>
+
+  <div fxFlexFill>
+    <span fxFlex="40%">Name</span>
+    <span fxFlex="60%" *ngIf="debitOrderOperator">{{ debitOrderOperator.name }}</span>
+  </div>
+
+  <div fxFlexFill>
+    <span fxFlex="40%">Short Name</span>
+    <span fxFlex="60%">{{ debitOrderOperator.shortName}}</span>
+  </div>
+
+  <div fxFlexFill>
+    <span fxFlex="40%">External ID</span>
+    <span fxFlex="60%">{{ debitOrderOperator.externalId}}</span>
+  </div>
+
+  <div fxFlexFill>
+    <span fxFlex="40%">Description</span>
+    <span fxFlex="60%">{{ debitOrderOperator.description}}</span>
+  </div>
+
+  <h3 class="mat-h3" fxFlexFill>Bank Information</h3>
+
+  <mat-divider fxFlexFill></mat-divider>
+
+  <div fxFlexFill>
+    <span fxFlex="40%">Account Name</span>
+    <span fxFlex="60%">{{ debitOrderOperator.accountName}}</span>
+  </div>
+
+  <div fxFlexFill>
+    <span fxFlex="40%">Account Number</span>
+    <span fxFlex="60%">{{ debitOrderOperator.accountNumber}}</span>
+  </div>
+
+  <div fxFlexFill>
+    <span fxFlex="40%">Bank</span>
+    <span fxFlex="60%">{{ debitOrderOperator.bankCode | find:bankOptions:'code':'name' }}</span>
+  </div>
+
+</div>
+
+<div fxLayout="row" class="margin-t" fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="2%">
+  <button mat-raised-button matStepperPrevious>
+    <fa-icon icon="arrow-left"></fa-icon>&nbsp;&nbsp;
+    Previous
+  </button>
+  <button mat-raised-button [routerLink]="['../']">
+    Cancel
+  </button>
+  <button mat-raised-button color="primary" (click)="submit.emit()">
+    Submit
+  </button>
+</div>

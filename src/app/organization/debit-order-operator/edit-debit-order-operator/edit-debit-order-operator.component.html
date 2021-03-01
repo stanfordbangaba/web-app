@@ -1,0 +1,57 @@
+<div class="container">
+
+  <mat-card>
+
+    <form [formGroup]="providerForm" (ngSubmit)="submit()">
+
+      <mat-card-content>
+
+        <div fxLayout="column">
+
+          <mat-form-field>
+            <mat-label>Name</mat-label>
+            <input matInput required formControlName="name">
+            <mat-error *ngIf="providerForm.controls.name.hasError('required')">
+              Name is <strong>required</strong>
+            </mat-error>
+            <mat-error *ngIf="providerForm.controls.name.hasError('pattern')">
+              Name <strong>cannot</strong> begin with a special character or number
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Short Name</mat-label>
+            <input matInput required formControlName="shortName">
+            <mat-error *ngIf="providerForm.controls.shortName.hasError('required')">
+              Short Name is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>External ID</mat-label>
+            <input matInput required formControlName="externalId">
+            <mat-error *ngIf="providerForm.controls.externalId.hasError('required')">
+              External ID is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Description</mat-label>
+            <input matInput formControlName="description">
+          </mat-form-field>
+
+        </div>
+
+      </mat-card-content>
+
+      <mat-card-actions fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="5px">
+        <button type="button" mat-raised-button [routerLink]="['../']">Cancel</button>
+        <button mat-raised-button color="primary" [disabled]="!providerForm.valid" *mifosxHasPermission="'UPDATE_DEBIT_ORDER_PROVIDER'">Submit</button>
+      </mat-card-actions>
+
+    </form>
+
+  </mat-card>
+
+</div>
+

@@ -69,6 +69,15 @@ import { EditLoanProvisioningCriteriaComponent } from './loan-provisioning-crite
 import { StandingInstructionsHistoryComponent } from './standing-instructions-history/standing-instructions-history.component';
 import { FundMappingComponent } from './fund-mapping/fund-mapping.component';
 import { CreateHolidayComponent } from './holidays/create-holiday/create-holiday.component';
+import { DebitOrderOperatorComponent } from './debit-order-operator/debit-order-operator.component';
+import { CreateDebitOrderOperatorComponent } from './debit-order-operator/create-debit-order-operator/create-debit-order-operator.component';
+import { ViewDebitOrderOperatorComponent } from './debit-order-operator/view-debit-order-operator/view-debit-order-operator.component';
+import { EditDebitOrderOperatorComponent } from './debit-order-operator/edit-debit-order-operator/edit-debit-order-operator.component';
+import { DebitOrderOperatorGeneralStepComponent } from './debit-order-operator/debit-order-operator-stepper/debit-order-operator-general-step/debit-order-operator-general-step.component';
+import { DebitOrderOperatorBankStepComponent } from './debit-order-operator/debit-order-operator-stepper/debit-order-operator-bank-step/debit-order-operator-bank-step.component';
+import { DebitOrderOperatorPreviewStepComponent } from './debit-order-operator/debit-order-operator-stepper/debit-order-operator-preview-step/debit-order-operator-preview-step.component';
+import { BankTabComponent } from './debit-order-operator/view-debit-order-operator/bank-tab/bank-tab.component';
+import {GeneralDOOperatorTabComponent} from './debit-order-operator/view-debit-order-operator/general-tab/general-tab.component';
 
 /**
  * Organization Module
@@ -83,6 +92,7 @@ import { CreateHolidayComponent } from './holidays/create-holiday/create-holiday
     OrganizationRoutingModule
   ],
   declarations: [
+    GeneralDOOperatorTabComponent,
     OrganizationComponent,
     LoanProvisioningCriteriaComponent,
     OfficesComponent,
@@ -144,6 +154,14 @@ import { CreateHolidayComponent } from './holidays/create-holiday/create-holiday
     StandingInstructionsHistoryComponent,
     FundMappingComponent,
     CreateHolidayComponent,
+    DebitOrderOperatorComponent,
+    CreateDebitOrderOperatorComponent,
+    ViewDebitOrderOperatorComponent,
+    EditDebitOrderOperatorComponent,
+    DebitOrderOperatorGeneralStepComponent,
+    DebitOrderOperatorBankStepComponent,
+    DebitOrderOperatorPreviewStepComponent,
+    BankTabComponent,
   ]
 })
 export class OrganizationModule { }

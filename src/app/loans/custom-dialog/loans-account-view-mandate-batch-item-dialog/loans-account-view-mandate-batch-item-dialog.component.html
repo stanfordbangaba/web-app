@@ -1,0 +1,54 @@
+<h1 mat-dialog-title>Batch Item Detail</h1>
+
+<div mat-dialog-content fxLayout="column">
+
+  <div fxLayout="row wrap" fxLayout.lt-md="column">
+
+    <div fxFlexFill *ngIf="data.batchItemData.sourceAccount">
+      <span fxFlex="50%">Source Account:</span>
+      <span fxFlex="50%">{{ data.batchItemData.sourceAccount }}</span>
+    </div>
+
+    <div fxFlexFill *ngIf="data.batchItemData.amount">
+      <span fxFlex="50%">Amount:</span>
+      <span fxFlex="50%">{{ data.batchItemData.amount }}</span>
+    </div>
+
+    <div fxFlexFill *ngIf="data.batchItemData.reference">
+      <span fxFlex="50%">Reference:</span>
+      <span fxFlex="50%">{{ data.batchItemData.reference }}</span>
+    </div>
+
+    <div fxFlexFill *ngIf="data.batchItemData.responseCode">
+      <span fxFlex="50%">Response Code:</span>
+      <span fxFlex="50%">{{ data.batchItemData.responseCode }}</span>
+    </div>
+
+    <div fxFlexFill *ngIf="data.batchItemData.destinationAccount">
+      <span fxFlex="50%">Destnation Account:</span>
+      <span fxFlex="50%">{{ data.batchItemData.destinationAccount }}</span>
+    </div>
+
+    <div fxFlexFill *ngIf="data.batchItemData.originAccount">
+      <span fxFlex="50%">Origin Account:</span>
+      <span fxFlex="50%">{{ data.batchItemData.originAccount }}</span>
+    </div>
+
+    <div fxFlexFill *ngIf="data.batchItemData.processingDate">
+      <span fxFlex="50%">Processing Date:</span>
+      <span fxFlex="50%">{{ data.batchItemData.processingDate }}</span>
+    </div>
+
+    <div fxFlexFill *ngIf="data.batchItemData.amountCurrencyCode">
+      <span fxFlex="50%">Currency Code:</span>
+      <span fxFlex="50%">{{ data.batchItemData.amountCurrencyCode }}</span>
+    </div>
+
+  </div>
+
+</div>
+
+<mat-dialog-actions fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="2%">
+  <button mat-raised-button mat-dialog-close> Cancel </button>
+</mat-dialog-actions>
+

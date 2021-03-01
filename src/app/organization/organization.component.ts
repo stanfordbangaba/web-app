@@ -5,7 +5,7 @@ import { Component, OnInit } from '@angular/core';
  * Organization component.
  */
 @Component({
-  selector: 'mifosx-products',
+  selector: 'mifosx-organization',
   templateUrl: './organization.component.html',
   styleUrls: ['./organization.component.scss']
 })

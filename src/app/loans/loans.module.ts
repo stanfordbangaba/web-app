@@ -66,6 +66,11 @@ import { LoansAccountViewGuarantorDetailsDialogComponent } from './custom-dialog
 import { LoansAccountAddCollateralDialogComponent } from './custom-dialog/loans-account-add-collateral-dialog/loans-account-add-collateral-dialog.component';
 import { LoanAccountLoadDocumentsDialogComponent } from './custom-dialog/loan-account-load-documents-dialog/loan-account-load-documents-dialog.component';
 import {ViewMandatesComponent} from './loans-view/loan-account-actions/mandate/view-mandates.component';
+import { CreateMandateComponent } from './loans-view/loan-account-actions/mandate/create-mandate/create-mandate.component';
+import { ViewMandateComponent } from './loans-view/loan-account-actions/mandate/view-mandate/view-mandate.component';
+import { EditMandateComponent } from './loans-view/loan-account-actions/mandate/edit-mandate/edit-mandate.component';
+import { MandateBatchItemsComponent } from './loans-view/loan-account-actions/mandate/view-mandate/mandate-batch-items/mandate-batch-items.component';
+import { LoansAccountViewMandateBatchItemDialogComponent } from './custom-dialog/loans-account-view-mandate-batch-item-dialog/loans-account-view-mandate-batch-item-dialog.component';
 
 /**
  * Loans Module
@@ -129,7 +134,12 @@ import {ViewMandatesComponent} from './loans-view/loan-account-actions/mandate/v
     ViewTransactionComponent,
     EditTransactionComponent,
     ViewRecieptComponent,
-    ExportTransactionsComponent
+    ExportTransactionsComponent,
+    CreateMandateComponent,
+    ViewMandateComponent,
+    EditMandateComponent,
+    MandateBatchItemsComponent,
+    LoansAccountViewMandateBatchItemDialogComponent
   ],
   providers: [DatePipe],
 })

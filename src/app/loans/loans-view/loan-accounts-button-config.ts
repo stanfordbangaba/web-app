@@ -122,12 +122,8 @@ export class LoansAccountButtonConfiguration {
       case 'Active':
         this.optionArray = [
           {
-            name: 'Create Mandate',
-            taskPermissionName: 'CREATE_MANDATE',
-          },
-          {
-            name: 'View Mandates',
-            taskPermissionName: 'VIEW_MANDATES',
+            name: 'Manage Mandates',
+            taskPermissionName: 'VIEW_DEBIT_ORDER_MANDATES',
           },
           {
             name: 'Waive Interest',

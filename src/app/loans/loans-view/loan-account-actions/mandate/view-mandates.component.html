@@ -73,98 +73,86 @@
         </div>
         <div fxLayout="column" fxFlex="50%">
           <div fxLayout="row" fxLayoutAlign="flex-end">
-            <button mat-raised-button class="f-right" color="primary"
-              (click)="toggleMandatesDetailsOverview()">{{showDeletedMandatesAccounts?'Hide Deleted Mandates':'Show Deleted Mandates'}}</button>
+            <button mat-raised-button class="f-right" color="primary" *mifosxHasPermission="'CREATE_DEBIT_ORDER_MANDATE'"
+              [routerLink]="['create']">Create Mandate</button>
           </div>
         </div>
       </div>
 
       <table fxFlexFill mat-table
-        [dataSource]="mandateDetails|accountsFilter:'mandate':showDeletedMandatesAccounts">
+        [dataSource]="mandateDetails" matSort>
         <!-- <ng-container *ngIf="expression"> -->
-        <ng-container matColumnDef="fullname">
-          <th mat-header-cell *matHeaderCellDef> Name </th>
+        <ng-container matColumnDef="startDate">
+          <th mat-header-cell *matHeaderCellDef> Start Date </th>
           <td mat-cell *matCellDef="let mandate">
-            <span *ngIf="!mandate.mandateFundingDetails">
-              {{mandate.firstname}} &nbsp; {{mandate.lastname}}
+            <span *ngIf="!mandate.startDate">
+              {{mandate.startDate}}
             </span>
           </td>
         </ng-container>
 
-        <ng-container matColumnDef="relationship">
-          <th mat-header-cell *matHeaderCellDef> Relationship </th>
+        <ng-container matColumnDef="endDate">
+          <th mat-header-cell *matHeaderCellDef> End Date </th>
           <td mat-cell *matCellDef="let mandate">
-            <span *ngIf="!mandate.mandateFundingDetails">
-              {{mandate.clientRelationshipType.name}}
+            <span *ngIf="!mandate.endDate">
+              {{mandate.endDate}}
             </span>
           </td>
         </ng-container>
 
-        <ng-container matColumnDef="mandatetype">
-          <th mat-header-cell *matHeaderCellDef> Mandate Type </th>
+        <ng-container matColumnDef="debitOrderDueDate">
+          <th mat-header-cell *matHeaderCellDef> Due Date </th>
           <td mat-cell *matCellDef="let mandate">
-            <span *ngIf="!mandate.mandateFundingDetails">
-              {{mandate.mandateType.value}}
+            <span *ngIf="!mandate.debitOrderDueDate">
+              {{mandate.debitOrderDueDate}}
             </span>
           </td>
         </ng-container>
 
-        <ng-container matColumnDef="depositAccount">
-          <th mat-header-cell *matHeaderCellDef> Deposit Account </th>
+        <ng-container matColumnDef="additionalFee">
+          <th mat-header-cell *matHeaderCellDef> Additional Fee </th>
           <td mat-cell *matCellDef="let mandate">
-            <span *ngIf="!mandate.mandateFundingDetails">
-
+            <span *ngIf="!mandate.additionalFee">
+              {{mandate.additionalFee}}
             </span>
           </td>
         </ng-container>
 
-        <ng-container matColumnDef="amount">
-          <th mat-header-cell *matHeaderCellDef> Amount </th>
+        <ng-container matColumnDef="debitOrderMandateNumber">
+          <th mat-header-cell *matHeaderCellDef> Mandate Number </th>
           <td mat-cell *matCellDef="let mandate">
-            <span *ngIf="!mandate.mandateFundingDetails">
-
+            <span *ngIf="!mandate.debitOrderMandateNumber">
+              {{mandate.debitOrderMandateNumber}}
             </span>
           </td>
         </ng-container>
 
-        <ng-container matColumnDef="remainingAmount">
-          <th mat-header-cell *matHeaderCellDef> Remaining Amount </th>
+        <ng-container matColumnDef="debitOrderMandateStatus">
+          <th mat-header-cell *matHeaderCellDef> Mandate Status </th>
           <td mat-cell *matCellDef="let mandate">
-            <span *ngIf="!mandate.mandateFundingDetails">
-
+            <span *ngIf="!mandate.debitOrderMandateStatus">
+              {{mandate.debitOrderMandateStatus}}
             </span>
           </td>
         </ng-container>
 
-        <ng-container matColumnDef="status">
-          <th mat-header-cell *matHeaderCellDef> Status </th>
-          <td mat-cell *matCellDef="let mandate">
-            <span *ngIf="!mandate.mandateFundingDetails">
-              <span *ngIf="mandate.status">
-                Active
-              </span>
-              <span *ngIf="!mandate.status">
-                Deleted
-              </span>
-            </span>
-          </td>
-        </ng-container>
+
 
         <ng-container matColumnDef="action">
           <th mat-header-cell *matHeaderCellDef> Action </th>
           <td mat-cell *matCellDef="let mandate; let id = index">
-            <span *ngIf="!mandate.mandateFundingDetails">
+            <span *ngIf="!mandate.debitOrderMandateStatus">
               <button mat-raised-button class="account-action-button" color="primary"
-                *mifosxHasPermission="'READ_SAVINGSACCOUNT'" (click)="viewMandateDetails(mandate)">
+                *mifosxHasPermission="'READ_DEBIT_ORDER_MANDATE'" (click)="viewMandateDetail(mandate)">
                 <fa-icon icon="eye"></fa-icon>&nbsp;&nbsp;
               </button>
               <button mat-raised-button class="account-action-button" color="primary"
-                *ngIf="mandate.status && mandate.mandateType.id == 3 && mandate.id">
+                *ngIf="mandate.status && mandate.id" [routerLink]="['edit']">
                 <fa-icon icon="edit"></fa-icon>&nbsp;&nbsp;
               </button>
               <span *ngIf="mandate.status">
                 <button mat-raised-button class="account-action-button" color="warn"
-                  *mifosxHasPermission='"DELETE_GUARANTOR"' (click)="deleteMandate(mandate.id)">
+                  *mifosxHasPermission='"DELETE_DEBIT_ORDER_MANDATE"' (click)="deleteMandate(mandate.id)">
                   <fa-icon icon="trash"></fa-icon>&nbsp;&nbsp;
                 </button>
               </span>

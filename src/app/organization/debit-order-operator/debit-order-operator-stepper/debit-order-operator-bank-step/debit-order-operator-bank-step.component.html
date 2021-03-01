@@ -1,0 +1,54 @@
+<form [formGroup]="bankForm">
+
+  <mat-card-content>
+
+    <div fxLayout="column">
+
+      <mat-form-field>
+        <mat-label>Account Name</mat-label>
+        <input matInput required formControlName="accountName">
+        <mat-error *ngIf="bankForm.controls.accountName.hasError('required')">
+          Account Name is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Account Number</mat-label>
+        <input matInput required formControlName="accountNumber">
+        <mat-error *ngIf="bankForm.controls.accountNumber.hasError('required')">
+          Account Number is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field *ngIf="bankForm.contains('bankCode')" fxFlex="48%">
+        <mat-label>Bank</mat-label>
+        <mat-select required formControlName="bankCode">
+          <mat-option *ngFor="let bank of bankOptions" [value]="bank.code">
+            {{ bank.name }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="bankForm.controls.bankCode.hasError('required')">
+          Bank is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+
+    </div>
+
+  </mat-card-content>
+
+  <div fxLayout="row" class="margin-t" fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="2%">
+    <button mat-raised-button matStepperPrevious>
+      <fa-icon icon="arrow-left"></fa-icon>&nbsp;&nbsp;
+      Previous
+    </button>
+    <button mat-raised-button matStepperNext>
+      Next&nbsp;&nbsp;
+      <fa-icon icon="arrow-right"></fa-icon>
+    </button>
+  </div>
+
+</form>
+
+
+

@@ -1,0 +1,46 @@
+<div fxLayout="row" fxLayoutAlign="end" fxLayoutGap="2%" fxLayout.lt-md="column" class="container m-b-20">
+  <span *mifosxHasPermission="'ACTIVATE_DEBIT_ORDER_OPERATOR'">
+    <button mat-raised-button color="accent" (click)="activateProvider()" *ngIf="providerData.status !== 'ACTIVE'">
+      <fa-icon icon="lock-open"></fa-icon>&nbsp;&nbsp;
+      Activate
+    </button>
+  </span>
+  <button mat-raised-button color="primary" [routerLink]="['edit']" *mifosxHasPermission="'UPDATE_DEBIT_ORDER_OPERATOR'">
+    <fa-icon icon="edit"></fa-icon>&nbsp;&nbsp;
+    Edit
+  </button>
+  <button mat-raised-button color="warn" (click)="deleteProvider()" *mifosxHasPermission="'DELETE_DEBIT_ORDER_OPERATOR'">
+    <fa-icon icon="trash"></fa-icon>&nbsp;&nbsp;
+    Delete
+  </button>
+</div>
+
+<div class="container">
+
+  <mat-card>
+
+    <mat-card-content>
+
+      <mat-card-content>
+
+        <nav mat-tab-nav-bar class="navigation-tabs">
+          <a mat-tab-link [routerLink]="['./general']" routerLinkActive #general="routerLinkActive"
+             [active]="general.isActive">
+            General
+          </a>
+          <a mat-tab-link [routerLink]="['./bank']" routerLinkActive #bank="routerLinkActive"
+             [active]="bank.isActive">
+            Bank Information
+          </a>
+        </nav>
+
+        <router-outlet></router-outlet>
+
+      </mat-card-content>
+
+    </mat-card-content>
+
+  </mat-card>
+
+</div>
+

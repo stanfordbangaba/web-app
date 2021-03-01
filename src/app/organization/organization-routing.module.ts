@@ -102,6 +102,15 @@ import { LoanProvisioningCriteriaTemplateResolver } from './loan-provisioning-cr
 import { LoanProvisioningCriteriaAndTemplateResolver } from './loan-provisioning-criteria/common-resolvers/loan-provisioning-criteria-and-template.resolver';
 import { StandingInstructionsTemplateResolver } from './standing-instructions-history/standing-instructions-template.resolver';
 import { AdvanceSearchTemplateResolver } from './fund-mapping/advance-search-template.resolver';
+import {DebitOrderOperatorComponent} from './debit-order-operator/debit-order-operator.component';
+import {DebitOrderOperatorsResolver} from './debit-order-operator/common-resolvers/debit-order-operators.resolver';
+import {CreateDebitOrderOperatorComponent} from './debit-order-operator/create-debit-order-operator/create-debit-order-operator.component';
+import {ViewDebitOrderOperatorComponent} from './debit-order-operator/view-debit-order-operator/view-debit-order-operator.component';
+import {DebitOrderOperatorResolver} from './debit-order-operator/common-resolvers/debit-order-operator.resolver';
+import {EditDebitOrderOperatorComponent} from './debit-order-operator/edit-debit-order-operator/edit-debit-order-operator.component';
+import {BanksResolver} from './debit-order-operator/common-resolvers/banks.resolver';
+import {GeneralDOOperatorTabComponent} from './debit-order-operator/view-debit-order-operator/general-tab/general-tab.component';
+import {BankTabComponent} from './debit-order-operator/view-debit-order-operator/bank-tab/bank-tab.component';
 
 /** Organization Routes */
 const routes: Routes = [
@@ -339,6 +348,61 @@ const routes: Routes = [
           resolve: {
             advanceSearchTemplate: AdvanceSearchTemplateResolver
           }
+        },
+        {
+          path: 'debit-order-operators',
+          data: {title: 'Debit Order Operators', breadcrumb: 'Debit Order Operators'},
+          children: [
+            {
+              path: '',
+              component: DebitOrderOperatorComponent,
+              resolve: {
+                debitOrderProviders: DebitOrderOperatorsResolver
+              }
+            },
+            {
+              path: 'create',
+              component: CreateDebitOrderOperatorComponent,
+              data: {title: 'Create Debit Order Operator', breadcrumb: 'Create Debit Order Operator'},
+              resolve: {
+                bankData: BanksResolver
+              }
+            },
+            {
+              path: 'edit',
+              component: EditDebitOrderOperatorComponent,
+              data: {title: 'Edit Debit Order Operator', breadcrumb: 'Edit Debit Order Operator'},
+              resolve: {
+                providerData: DebitOrderOperatorResolver
+              }
+            },
+            {
+              path: ':id',
+              component: ViewDebitOrderOperatorComponent,
+              data: {title: 'Debit Order Operator', breadcrumb: 'Debit Order Operator'},
+              resolve: {
+                providerData: DebitOrderOperatorResolver
+              },
+              children: [
+                {
+                  path: 'general',
+                  component: GeneralDOOperatorTabComponent,
+                  data: {title: 'View Debit Order Operator', breadcrumb: 'View Debit Order Operator'},
+                  resolve: {
+                    providerData: DebitOrderOperatorResolver
+                  }
+                },
+                {
+                  path: 'bank',
+                  component: BankTabComponent,
+                  data: {title: 'View Debit Order Operator', breadcrumb: 'View Debit Order Operator'},
+                  resolve: {
+                    providerData: DebitOrderOperatorResolver
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
           path: 'adhoc-query',
@@ -655,6 +719,7 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
   providers: [
+    BanksResolver,
     LoanProvisioningCriteriaResolver,
     OfficesResolver,
     EmployeesResolver,
@@ -666,6 +731,8 @@ const routes: Routes = [
     SmsCampaignTemplateResolver,
     AdhocQueriesResolver,
     AdhocQueryResolver,
+    DebitOrderOperatorsResolver,
+    DebitOrderOperatorResolver,
     TellersResolver,
     TellerResolver,
     PaymentTypesResolver,
