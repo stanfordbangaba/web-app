@@ -28,14 +28,14 @@ export class ViewDebitOrderOperatorComponent implements OnInit {
 
   activateProvider() {
     const activateProviderRef = this.dialog.open(ConfirmationDialogComponent, {
-      data: { heading: 'Approve ', dialogContext: 'Are you sure you want approve this?', type: 'Basic' }
+      data: {heading: 'Activate ', dialogContext: 'Are you sure you want approve this?', type: 'Basic'}
     });
     activateProviderRef.afterClosed().subscribe(response => {
       if (response.confirm) {
-            this.debitOrderProviderService.approveDebitOrderProvider(this.providerData.id)
-              .subscribe(value => {
-                this.reload();
-              });
+        this.debitOrderProviderService.approveDebitOrderProvider(this.providerData.id)
+          .subscribe(value => {
+            this.reload();
+          });
       }
     });
   }
@@ -46,19 +46,34 @@ export class ViewDebitOrderOperatorComponent implements OnInit {
     });
     deleteProviderRef.afterClosed().subscribe(response => {
       if (response.delete) {
-            this.debitOrderProviderService.deleteDebitOrderProvider(this.providerData.id)
-              .subscribe(value => {
-                this.router.navigate(['organization/debit-order-providers']);
-              });
+        this.debitOrderProviderService.deleteDebitOrderProvider(this.providerData.id)
+          .subscribe(value => {
+            this.router.navigate(['organization/debit-order-providers']);
+          });
+      }
+    });
+  }
+
+  disableProvider() {
+    const disableProviderRef = this.dialog.open(ConfirmationDialogComponent, {
+      data: {heading: 'Disable ', dialogContext: 'Are you sure you want disable this?', type: 'Mild'}
+    });
+    disableProviderRef.afterClosed().subscribe(response => {
+      if (response.confirm) {
+        this.debitOrderProviderService.disableDebitOrderProvider(this.providerData.id)
+          .subscribe(value => {
+            this.reload();
+          });
       }
     });
   }
 
   private reload() {
-    const id = this.providerData.id;
-    const url: string = this.router.url;
-    this.router.navigateByUrl(`/organization/debit-order-providers/${id}`, { skipLocationChange: true })
-      .then(() => this.router.navigate([url]));
+    window.location.reload();
+    // const id = this.providerData.id;
+    // const url: string = this.router.url;
+    // this.router.navigateByUrl(`/organization/debit-order-providers/${id}`, { skipLocationChange: true })
+    //   .then(() => this.router.navigate([url]));
   }
 
 }

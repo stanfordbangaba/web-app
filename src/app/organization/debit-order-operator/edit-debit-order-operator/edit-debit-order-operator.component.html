@@ -8,6 +8,8 @@
 
         <div fxLayout="column">
 
+          <mat-label><strong>General Information</strong></mat-label>
+
           <mat-form-field>
             <mat-label>Name</mat-label>
             <input matInput required formControlName="name">
@@ -40,12 +42,42 @@
             <input matInput formControlName="description">
           </mat-form-field>
 
+          <mat-label><strong>Bank Information</strong></mat-label>
+
+          <mat-form-field>
+            <mat-label>Account Name</mat-label>
+            <input matInput required formControlName="accountName">
+            <mat-error *ngIf="providerForm.controls.accountName.hasError('required')">
+              Account Name is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Account Number</mat-label>
+            <input matInput required formControlName="accountNumber">
+            <mat-error *ngIf="providerForm.controls.accountNumber.hasError('required')">
+              Account Number is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field *ngIf="providerForm.contains('bankCode')" fxFlex="48%">
+            <mat-label>Bank</mat-label>
+            <mat-select required formControlName="bankCode">
+              <mat-option *ngFor="let bank of bankOptions" [value]="bank.code">
+                {{ bank.name }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="providerForm.controls.bankCode.hasError('required')">
+              Bank is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+
         </div>
 
       </mat-card-content>
 
       <mat-card-actions fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="5px">
-        <button type="button" mat-raised-button [routerLink]="['../']">Cancel</button>
+        <button type="button" mat-raised-button [routerLink]="['../../', providerData.id]">Cancel</button>
         <button mat-raised-button color="primary" [disabled]="!providerForm.valid" *mifosxHasPermission="'UPDATE_DEBIT_ORDER_PROVIDER'">Submit</button>
       </mat-card-actions>
 

@@ -24,7 +24,7 @@ export class DebitOrderOperatorService {
   }
 
   editDebitOrderProvider(id: any, provider: any): Observable<any> {
-    return this.http.put(`/d-o/debit-order-operators/${id}`, provider);
+    return this.http.post(`/d-o/debit-order-operators/edit`, provider);
   }
 
   viewDebitOrderProvider(id: any): Observable<any> {
@@ -33,6 +33,10 @@ export class DebitOrderOperatorService {
 
   approveDebitOrderProvider(id: any): Observable<any> {
     return this.http.get(`/d-o/debit-order-operators/activate/${id}`);
+  }
+
+  disableDebitOrderProvider(id: any): Observable<any> {
+    return this.http.get(`/d-o/debit-order-operators/disable/${id}`);
   }
 
   deleteDebitOrderProvider(id: any): Observable<any> {

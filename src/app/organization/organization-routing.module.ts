@@ -369,11 +369,12 @@ const routes: Routes = [
               }
             },
             {
-              path: 'edit',
+              path: 'edit/:id',
               component: EditDebitOrderOperatorComponent,
               data: {title: 'Edit Debit Order Operator', breadcrumb: 'Edit Debit Order Operator'},
               resolve: {
-                providerData: DebitOrderOperatorResolver
+                providerData: DebitOrderOperatorResolver,
+                bankData: BanksResolver
               }
             },
             {
@@ -384,6 +385,11 @@ const routes: Routes = [
                 providerData: DebitOrderOperatorResolver
               },
               children: [
+                {
+                  path: '',
+                  redirectTo: 'general',
+                  pathMatch: 'full'
+                },
                 {
                   path: 'general',
                   component: GeneralDOOperatorTabComponent,

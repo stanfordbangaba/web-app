@@ -5,7 +5,13 @@
       Activate
     </button>
   </span>
-  <button mat-raised-button color="primary" [routerLink]="['edit']" *mifosxHasPermission="'UPDATE_DEBIT_ORDER_OPERATOR'">
+  <span *mifosxHasPermission="'DISABLE_DEBIT_ORDER_OPERATOR'">
+    <button mat-raised-button color="accent" (click)="disableProvider()" *ngIf="providerData.status !== 'SUSPENDED'">
+      <fa-icon icon="times"></fa-icon>&nbsp;&nbsp;
+      Disable
+    </button>
+  </span>
+  <button mat-raised-button color="primary" [routerLink]="['../edit', providerData.id]" *mifosxHasPermission="'UPDATE_DEBIT_ORDER_OPERATOR'">
     <fa-icon icon="edit"></fa-icon>&nbsp;&nbsp;
     Edit
   </button>
