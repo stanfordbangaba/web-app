@@ -31,65 +31,22 @@
 
     <mat-card-content>
 
-      <div fxLayout="row wrap" class="content">
+      <mat-card-content>
 
-        <div fxFlex="50%" class="mat-body-strong" *ngIf="mandateData.debitOrderMandateStatus">
-          Mandate Status
-        </div>
+        <nav mat-tab-nav-bar class="navigation-tabs">
+          <a mat-tab-link [routerLink]="['./details']" routerLinkActive #details="routerLinkActive"
+             [active]="details.isActive">
+            Details
+          </a>
+          <a mat-tab-link [routerLink]="['./settings']" routerLinkActive #settings="routerLinkActive"
+             [active]="settings.isActive">
+            Settings
+          </a>
+        </nav>
 
-        <div fxFlex="50%" *ngIf="mandateData.debitOrderMandateStatus">
-          {{ mandateData.debitOrderMandateStatus }}
-        </div>
+        <router-outlet></router-outlet>
 
-        <div fxFlex="50%" class="mat-body-strong" *ngIf="mandateData.debitOrderDueDate">
-          Due Date
-        </div>
-
-        <div fxFlex="50%" *ngIf="mandateData.debitOrderDueDate">
-          {{ mandateData.debitOrderDueDate }}
-        </div>
-
-        <div fxFlex="50%" class="mat-body-strong" *ngIf="mandateData.additionalFee">
-          Additional Fee
-        </div>
-
-        <div fxFlex="50%" *ngIf="mandateData.additionalFee">
-          {{ mandateData.additionalFee }}
-        </div>
-
-        <div fxFlex="50%" class="mat-body-strong" *ngIf="mandateData.debitOrderMandateNumber">
-          Mandate Number
-        </div>
-
-        <div fxFlex="50%" *ngIf="mandateData.debitOrderMandateNumber">
-          {{ mandateData.debitOrderMandateNumber }}
-        </div>
-
-        <div fxFlex="50%" class="mat-body-strong">
-          Start Date
-        </div>
-
-        <div fxFlex="50%">
-          {{ mandateData.startDate | date }}
-        </div>
-
-        <div fxFlex="50%" class="mat-body-strong">
-          End Date
-        </div>
-
-        <div fxFlex="50%" *ngIf="mandateData.endDate">
-          {{ mandateData.endDate | date }}
-        </div>
-
-        <div fxFlex="50%" class="mat-body-strong">
-          Status
-        </div>
-
-        <div fxFlex="50%">
-          {{ mandateData.status | titlecase }}
-        </div>
-
-      </div>
+      </mat-card-content>
 
     </mat-card-content>
 

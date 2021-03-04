@@ -1,0 +1,150 @@
+<form [formGroup]="settingsForm">
+
+  <mat-card-content>
+
+    <div fxLayout="column">
+
+      <mat-form-field>
+        <mat-label>Authorization Date</mat-label>
+        <input matInput [min]="minDate" [matDatepicker]="startDatePicker" required formControlName="authorizationDate">
+        <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
+        <mat-datepicker #startDatePicker></mat-datepicker>
+        <mat-error *ngIf="settingsForm.controls.authorizationDate.hasError('required')">
+          Authorization Date is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>First Collection Date</mat-label>
+        <input matInput [min]="minDate" [matDatepicker]="startDatePicker" required formControlName="firstCollectionDay">
+        <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
+        <mat-datepicker #startDatePicker></mat-datepicker>
+        <mat-error *ngIf="settingsForm.controls.firstCollectionDay.hasError('required')">
+          First Collection Date is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field *ngIf="settingsForm.contains('debitOrderFrequency')" fxFlex="48%">
+        <mat-label>Debit Order Frequency</mat-label>
+        <mat-select required formControlName="debitOrderFrequency">
+          <mat-option *ngFor="let io of debitOrderFrequencies" [value]="io">
+            {{ io }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="settingsForm.controls.debitOrderFrequency.hasError('required')">
+          Debit Order Frequency is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Collection Day</mat-label>
+        <input type="number" matInput required formControlName="collectionDay">
+        <mat-error *ngIf="settingsForm.controls.collectionDay.hasError('required')">
+          Collection Day is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Additional Fee</mat-label>
+        <input type="number" matInput required formControlName="additionalFee">
+        <mat-error *ngIf="settingsForm.controls.additionalFee.hasError('required')">
+          Additional Fee is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>First Collection Amount</mat-label>
+        <input type="number" matInput required formControlName="firstCollectionAmount">
+        <mat-error *ngIf="settingsForm.controls.firstCollectionAmount.hasError('required')">
+          First Collection Amount is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Collection Amount</mat-label>
+        <input type="number" matInput required formControlName="collectionAmount">
+        <mat-error *ngIf="settingsForm.controls.collectionAmount.hasError('required')">
+          Collection Amount is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Maximum Collection Amount</mat-label>
+        <input type="number" matInput required formControlName="maximumCollectionAmount">
+        <mat-error *ngIf="settingsForm.controls.maximumCollectionAmount.hasError('required')">
+          Maximum Collection Amount is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field *ngIf="settingsForm.contains('adjustmentAmountType')" fxFlex="48%">
+        <mat-label>Adjustment Amount Type</mat-label>
+        <mat-select required formControlName="adjustmentAmountType">
+          <mat-option *ngFor="let aat of adjustmentAmountTypes" [value]="aat">
+            {{ aat }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="settingsForm.controls.adjustmentAmountType.hasError('required')">
+          Adjustment Amount Type is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field *ngIf="settingsForm.value.adjustmentAmountType === 'RATE'">
+        <mat-label>Adjustment Rate</mat-label>
+        <input type="number" matInput required formControlName="adjustmentRate">
+        <mat-error *ngIf="settingsForm.controls.adjustmentRate.hasError('required')">
+          Adjustment Rate is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field *ngIf="settingsForm.value.adjustmentAmountType === 'AMOUNT'">
+        <mat-label>Adjustment Amount</mat-label>
+        <input type="number" matInput required formControlName="adjustmentAmount">
+        <mat-error *ngIf="settingsForm.controls.adjustmentAmount.hasError('required')">
+          Adjustment Amount is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field *ngIf="settingsForm.contains('mandateValueType')" fxFlex="48%">
+        <mat-label>Mandate Value Type</mat-label>
+        <mat-select required formControlName="mandateValueType">
+          <mat-option *ngFor="let mvt of mandateValueTypes" [value]="mvt">
+            {{ mvt }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="settingsForm.controls.mandateValueType.hasError('required')">
+          Mandate Value Type is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field *ngIf="settingsForm.contains('installmentOccurrence')" fxFlex="48%">
+        <mat-label>Installment Occurrence</mat-label>
+        <mat-select required formControlName="installmentOccurrence">
+          <mat-option *ngFor="let io of installmentOccurrences" [value]="io">
+            {{ io }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="settingsForm.controls.installmentOccurrence.hasError('required')">
+          Installment Occurrence is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+    </div>
+
+  </mat-card-content>
+
+  <div fxLayout="row" class="margin-t" fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="2%">
+    <button mat-raised-button matStepperPrevious>
+      <fa-icon icon="arrow-left"></fa-icon>&nbsp;&nbsp;
+      Previous
+    </button>
+    <button mat-raised-button matStepperNext>
+      Next&nbsp;&nbsp;
+      <fa-icon icon="arrow-right"></fa-icon>
+    </button>
+  </div>
+
+</form>
+
+
+
+

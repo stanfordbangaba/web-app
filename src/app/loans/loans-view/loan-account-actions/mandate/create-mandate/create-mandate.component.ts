@@ -1,7 +1,8 @@
-import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {MandateService} from '../mandate.service';
+import {MandateDetailsStepComponent} from '../mandate-stepper/mandate-details-step/mandate-details-step.component';
+import {MandateSettingsStepComponent} from '../mandate-stepper/mandate-settings-step/mandate-settings-step.component';
 
 @Component({
   selector: 'mifosx-create-mandate',
@@ -10,40 +11,49 @@ import {MandateService} from '../mandate.service';
 })
 export class CreateMandateComponent implements OnInit {
 
-  /** Minimum date allowed. */
-  minDate = new Date(2000, 0, 1);
-  /** Maximum date allowed. */
-  maxDate = new Date();
+  @Input() dataObject: any;
 
-  mandateForm: FormGroup;
+  @ViewChild(MandateDetailsStepComponent, {static: true}) mandateDetailsStepComponent: MandateDetailsStepComponent;
+  @ViewChild(MandateSettingsStepComponent, {static: true}) mandateSettingsStepComponent: MandateSettingsStepComponent;
 
-  constructor(private formBuilder: FormBuilder,
-              private route: ActivatedRoute,
+  operatorOptions: any;
+  clientOptions: any;
+
+  constructor(private route: ActivatedRoute,
               private router: Router,
               private mandateService: MandateService) {
-  }
-
-  ngOnInit(): void {
-    this.createMandateForm();
-  }
-
-  createMandateForm() {
-    this.mandateForm = this.formBuilder.group({
-      'startDate': ['', Validators.required],
-      'endDate': ['', Validators.required],
-      'debitOrderDueDate': ['', Validators.required],
-      'additionalFee': ['', Validators.required],
-      'debitOrderMandateNumber': ['', Validators.required]
+    this.route.data.subscribe((data: { operatorData: any, dataObject: any }) => {
+      this.operatorOptions = data.operatorData.entity;
+      this.clientOptions = data.dataObject;
+      console.log(`DATA OBJECT CREATE :: {}`, this.clientOptions);
     });
   }
 
-  submit() {
-    const mandate = this.mandateForm.value;
+  ngOnInit(): void {
+  }
 
-    this.mandateService.createMandate(mandate)
-      .subscribe(response => {
-        this.router.navigate(['../', response.id], {relativeTo: this.route});
-      });
+  get debitOrderMandateDetailsForm() {
+    return this.mandateDetailsStepComponent.mandateForm;
+  }
+
+  /**
+   * Retrieves the object
+   */
+  get debitOrderMandate() {
+    return {
+      ...this.mandateDetailsStepComponent.debitOrderMandateDetails,
+      ...this.mandateSettingsStepComponent.debitOrderMandateSettings
+    };
+  }
+
+  /**
+   * Submits the create form.
+   */
+  submit() {
+
+    this.mandateService.createMandate(this.debitOrderMandate).subscribe((response: any) => {
+      this.router.navigate(['../', response.resourceId], {relativeTo: this.route});
+    });
   }
 
 }

@@ -10,6 +10,7 @@ import { DatePipe } from '@angular/common';
 
 /** Dialog Components */
 import { DeleteDialogComponent } from 'app/shared/delete-dialog/delete-dialog.component';
+import {MandateService} from './mandate.service';
 
 /**
  * View Mandates Action
@@ -27,21 +28,17 @@ export class ViewMandatesComponent implements OnInit {
   loanId: any;
   mandatesDisplayedColumns: string[] = ['startDate', 'endDate', 'debitOrderDueDate', 'additionalFee', 'debitOrderMandateNumber', 'debitOrderMandateStatus', 'action'];
 
-  /** View and perform various action on existing list of mandates
-   * @param {MatDialog} dialog Dialog
-   * @param {LoansService} loansService Loans Service
-   * @param {route} Route Route
-   * @param {router} Router Router
-   */
+
   constructor(public dialog: MatDialog,
-              public loansService: LoansService,
+              public mandateService: MandateService,
               private route: ActivatedRoute,
               private router: Router) {
     this.loanId = this.route.parent.snapshot.params['loanId'];
   }
 
   ngOnInit() {
-    // this.mandateDetails = this.dataObject.guarantors;
+    console.log(`DATA OBJECT :: ${JSON.stringify(this.dataObject)}`);
+    // this.mandateService.getMandatesByAccountNumber()
     this.mandateDetails = [];
   }
 

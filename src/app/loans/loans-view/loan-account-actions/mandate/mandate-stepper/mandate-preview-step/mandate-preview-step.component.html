@@ -1,0 +1,144 @@
+<div fxLayout="row wrap" fxLayout.lt-md="column">
+
+  <h3 class="mat-h3" fxFlexFill>Details</h3>
+
+  <mat-divider fxFlexFill></mat-divider>
+
+  <div fxFlexFill>
+    <span fxFlex="40%">First Name</span>
+    <span fxFlex="60%" *ngIf="debitOrderMandate">{{ debitOrderMandate.firstName }}</span>
+  </div>
+
+  <div fxFlexFill>
+    <span fxFlex="40%">Last Name</span>
+    <span fxFlex="60%">{{ debitOrderMandate.lastName}}</span>
+  </div>
+
+  <div fxFlexFill>
+    <span fxFlex="40%">Reference Number</span>
+    <span fxFlex="60%">{{ debitOrderMandate.referenceNumber}}</span>
+  </div>
+
+  <div fxFlexFill>
+    <span fxFlex="40%">Contract Reference</span>
+    <span fxFlex="60%">{{ debitOrderMandate.contractReference}}</span>
+  </div>
+
+  <div fxFlexFill>
+    <span fxFlex="40%">Entry Class</span>
+    <span fxFlex="60%">{{ debitOrderMandate.entryClass}}</span>
+  </div>
+
+  <div fxFlexFill>
+    <span fxFlex="40%">Start Date</span>
+    <span fxFlex="60%">{{ debitOrderMandate.startDate}}</span>
+  </div>
+
+  <div fxFlexFill>
+    <span fxFlex="40%">End Date</span>
+    <span fxFlex="60%">{{ debitOrderMandate.endDate}}</span>
+  </div>
+
+  <div fxFlexFill>
+    <span fxFlex="40%">Operator</span>
+    <span fxFlex="60%">{{ debitOrderMandate.lmsOperatorId | find:operatorOptions: 'id': 'name'}}</span>
+  </div>
+
+  <h3 class="mat-h3" fxFlexFill>Settings</h3>
+
+  <mat-divider fxFlexFill></mat-divider>
+
+  <div fxFlexFill>
+    <span fxFlex="40%">Authorization Date</span>
+    <span fxFlex="60%">{{ debitOrderMandate.authorizationDate}}</span>
+  </div>
+
+  <div fxFlexFill>
+    <span fxFlex="40%">First Collection Day</span>
+    <span fxFlex="60%">{{ debitOrderMandate.firstCollectionDay}}</span>
+  </div>
+
+  <div fxFlexFill>
+    <span fxFlex="40%">Collection Day</span>
+    <span fxFlex="60%">{{ debitOrderMandate.collectionDay}}</span>
+  </div>
+
+  <div fxFlexFill>
+    <span fxFlex="40%">Debit Order Frequency</span>
+    <span fxFlex="60%">{{ debitOrderMandate.debitOrderFrequency}}</span>
+  </div>
+
+  <div fxFlexFill>
+    <span fxFlex="40%">Additional Fee</span>
+    <span fxFlex="60%">{{ debitOrderMandate.additionalFee}}</span>
+  </div>
+
+  <div fxFlexFill>
+    <span fxFlex="40%">First Collection Amount</span>
+    <span fxFlex="60%">{{ debitOrderMandate.firstCollectionAmount}}</span>
+  </div>
+
+  <div fxFlexFill>
+    <span fxFlex="40%">Collection Amount</span>
+    <span fxFlex="60%">{{ debitOrderMandate.collectionAmount}}</span>
+  </div>
+
+  <div fxFlexFill>
+    <span fxFlex="40%">Maximum Collection Amount</span>
+    <span fxFlex="60%">{{ debitOrderMandate.maximumCollectionAmount}}</span>
+  </div>
+
+  <div fxFlexFill>
+    <span fxFlex="40%">Adjustment Amount Type</span>
+    <span fxFlex="60%">{{ debitOrderMandate.adjustmentAmountType}}</span>
+  </div>
+
+  <div fxFlexFill>
+    <span fxFlex="40%">Adjustment Type</span>
+    <span fxFlex="60%">{{ debitOrderMandate.adjustmentRate}}</span>
+  </div>
+
+  <div fxFlexFill>
+    <span fxFlex="40%">Adjustment Amount</span>
+    <span fxFlex="60%">{{ debitOrderMandate.adjustmentAmount}}</span>
+  </div>
+
+  <div fxFlexFill>
+    <span fxFlex="40%">Mandate Value Type</span>
+    <span fxFlex="60%">{{ debitOrderMandate.mandateValueType}}</span>
+  </div>
+
+  <div fxFlexFill>
+    <span fxFlex="40%">Installment Occurrence</span>
+    <span fxFlex="60%">{{ debitOrderMandate.installmentOccurrence}}</span>
+  </div>
+
+  <div fxFlexFill>
+    <span fxFlex="40%">Debtor Identification Type</span>
+    <span fxFlex="60%">{{ debitOrderMandate.debtorIdentificationType}}</span>
+  </div>
+
+  <div fxFlexFill>
+    <span fxFlex="40%">Account Number</span>
+    <span fxFlex="60%">{{ debitOrderMandate.accountNumber}}</span>
+  </div>
+
+  <div fxFlexFill>
+    <span fxFlex="40%">Debtor Identification</span>
+    <span fxFlex="60%">{{ debitOrderMandate.debtorIdentification}}</span>
+  </div>
+
+</div>
+
+<div fxLayout="row" class="margin-t" fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="2%">
+  <button mat-raised-button matStepperPrevious>
+    <fa-icon icon="arrow-left"></fa-icon>&nbsp;&nbsp;
+    Previous
+  </button>
+  <button mat-raised-button [routerLink]="['../']">
+    Cancel
+  </button>
+  <button mat-raised-button color="primary" (click)="submit.emit()">
+    Submit
+  </button>
+</div>

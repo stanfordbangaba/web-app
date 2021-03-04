@@ -1,0 +1,96 @@
+<form [formGroup]="mandateForm">
+
+  <mat-card-content>
+
+    <div fxLayout="column">
+
+      <mat-form-field>
+        <mat-label>First Name</mat-label>
+        <input matInput required formControlName="firstName">
+        <mat-error *ngIf="mandateForm.controls.firstName.hasError('required')">
+          Name is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Last Name</mat-label>
+        <input matInput required formControlName="lastName">
+        <mat-error *ngIf="mandateForm.controls.lastName.hasError('required')">
+          Last Name is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Entry Class</mat-label>
+        <input matInput required formControlName="entryClass">
+        <mat-error *ngIf="mandateForm.controls.entryClass.hasError('required')">
+          Entry Class is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Reference Number</mat-label>
+        <input matInput required formControlName="referenceNumber">
+        <mat-error *ngIf="mandateForm.controls.referenceNumber.hasError('required')">
+          Reference Number is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field *ngIf="mandateForm.contains('lmsOperatorId')" fxFlex="48%">
+        <mat-label>Operator</mat-label>
+        <mat-select required formControlName="lmsOperatorId">
+          <mat-option *ngFor="let operator of operatorOptions" [value]="operator.id">
+            {{ operator.name }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="mandateForm.controls.lmsOperatorId.hasError('required')">
+          Operator is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+
+      <mat-form-field>
+        <mat-label>Contract Reference</mat-label>
+        <input matInput required formControlName="contractReference">
+        <mat-error *ngIf="mandateForm.controls.contractReference.hasError('required')">
+          Contract Reference is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Start Date</mat-label>
+        <input matInput [min]="minDate" [matDatepicker]="startDatePicker" required formControlName="startDate">
+        <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
+        <mat-datepicker #startDatePicker></mat-datepicker>
+        <mat-error *ngIf="mandateForm.controls.startDate.hasError('required')">
+          Start Date is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>End Date</mat-label>
+        <input matInput [min]="minDate" [matDatepicker]="endDatePicker" formControlName="endDate">
+        <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
+        <mat-datepicker #endDatePicker></mat-datepicker>
+      </mat-form-field>
+
+
+    </div>
+
+  </mat-card-content>
+
+  <div fxLayout="row" class="margin-t" fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="2%">
+    <button mat-raised-button matStepperPrevious disabled>
+      <fa-icon icon="arrow-left"></fa-icon>&nbsp;&nbsp;
+      Previous
+    </button>
+    <button mat-raised-button matStepperNext>
+      Next&nbsp;&nbsp;
+      <fa-icon icon="arrow-right"></fa-icon>
+    </button>
+  </div>
+
+</form>
+
+
+

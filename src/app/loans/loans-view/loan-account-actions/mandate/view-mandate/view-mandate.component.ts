@@ -71,10 +71,6 @@ export class ViewMandateComponent implements OnInit {
 
   private reload() {
     window.location.reload();
-    // const id = this.mandateData.id;
-    // const url: string = this.router.url;
-    // this.router.navigateByUrl(`/organization/debitr-order-providers/${id}`, {skipLocationChange: true})
-    //   .then(() => this.router.navigate([url]));
   }
 
   viewBatchItems() {

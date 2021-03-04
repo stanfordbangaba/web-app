@@ -71,6 +71,11 @@ import { ViewMandateComponent } from './loans-view/loan-account-actions/mandate/
 import { EditMandateComponent } from './loans-view/loan-account-actions/mandate/edit-mandate/edit-mandate.component';
 import { MandateBatchItemsComponent } from './loans-view/loan-account-actions/mandate/view-mandate/mandate-batch-items/mandate-batch-items.component';
 import { LoansAccountViewMandateBatchItemDialogComponent } from './custom-dialog/loans-account-view-mandate-batch-item-dialog/loans-account-view-mandate-batch-item-dialog.component';
+import { MandateDetailsStepComponent } from './loans-view/loan-account-actions/mandate/mandate-stepper/mandate-details-step/mandate-details-step.component';
+import { MandateSettingsStepComponent } from './loans-view/loan-account-actions/mandate/mandate-stepper/mandate-settings-step/mandate-settings-step.component';
+import { MandatePreviewStepComponent } from './loans-view/loan-account-actions/mandate/mandate-stepper/mandate-preview-step/mandate-preview-step.component';
+import { MandateDetailsTabComponent } from './loans-view/loan-account-actions/mandate/view-mandate/mandate-details-tab/mandate-details-tab.component';
+import { MandateSettingsTabComponent } from './loans-view/loan-account-actions/mandate/view-mandate/mandate-settings-tab/mandate-settings-tab.component';
 
 /**
  * Loans Module
@@ -139,7 +144,12 @@ import { LoansAccountViewMandateBatchItemDialogComponent } from './custom-dialog
     ViewMandateComponent,
     EditMandateComponent,
     MandateBatchItemsComponent,
-    LoansAccountViewMandateBatchItemDialogComponent
+    LoansAccountViewMandateBatchItemDialogComponent,
+    MandateDetailsStepComponent,
+    MandateSettingsStepComponent,
+    MandatePreviewStepComponent,
+    MandateDetailsTabComponent,
+    MandateSettingsTabComponent
   ],
   providers: [DatePipe],
 })

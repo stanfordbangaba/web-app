@@ -1,0 +1,45 @@
+<div class="tab-container mat-typography">
+
+  <mat-list>
+
+    <mat-list-item>
+      First Name : {{ mandateData.firstName ? mandateData.firstName : 'N/A' }}
+    </mat-list-item>
+
+    <mat-list-item>
+      Last Name : {{ mandateData.lastName ? mandateData.lastName : 'N/A' }}
+    </mat-list-item>
+
+    <mat-list-item>
+      Reference Number : {{ mandateData.referenceNumber ? mandateData.referenceNumber : 'N/A' }}
+    </mat-list-item>
+
+    <mat-list-item>
+      Contract Reference : {{ mandateData.contractReference ? mandateData.contractReference : 'N/A' }}
+    </mat-list-item>
+
+    <mat-list-item>
+      Entry Class : {{ mandateData.entryClass ? mandateData.entryClass : 'N/A' }}
+    </mat-list-item>
+
+    <mat-list-item>
+      Operator :
+    </mat-list-item>
+
+    <mat-list-item>
+      Status : {{ mandateData.status ? mandateData.status : 'N/A' }}
+    </mat-list-item>
+
+    <mat-list-item>
+      Start Date : {{ mandateData.startDate ? (mandateData.startDate | date) : 'Unassigned' }}
+    </mat-list-item>
+
+    <mat-list-item>
+      End Date : {{ mandateData.endDate ? (mandateData.endDate | date) : 'Unassigned' }}
+    </mat-list-item>
+
+
+  </mat-list>
+
+</div>
+

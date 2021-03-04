@@ -12,27 +12,27 @@ export class MandateService {
   }
 
   createMandate(mandate: any): Observable<any> {
-    return null;
+    return this.http.post('/d-o/debit-order-mandates', mandate);
   }
 
   editMandate(id: any, mandate: any): Observable<any> {
-    return null;
+    return this.http.post('/d-o/debit-order-mandates/edit', mandate);
   }
 
   deleteMandate(id: any): Observable<any> {
-    return null;
+    return this.http.delete(`/d-o/debit-order-mandates/${id}`);
   }
 
   getMandate(id: any): Observable<any> {
-    return null;
+    return this.http.get(`/d-o/debit-order-mandates/${id}`);
   }
 
   activateMandate(id: any): Observable<any> {
-    return null;
+    return this.http.get(`/d-o/debit-order-mandates/activate/${id}`);
   }
 
   disableMandate(id: any): Observable<any> {
-    return null;
+    return this.http.get(`/d-o/debit-order-mandates/disable/${id}`);
   }
 
   getMandateBatchItems(id: any): Observable<any> {
@@ -40,7 +40,11 @@ export class MandateService {
   }
 
   getMandates(): Observable<any> {
-    return null;
+    return this.http.get('/d-o/debit-order-mandates');
+  }
+
+  getMandatesByAccountNumber(accountNumber: any): Observable<any> {
+    return this.http.get(`/d-o/debit-order-mandates/account-number/${accountNumber}`);
   }
 
 }
