@@ -20,10 +20,17 @@ export class MandateDetailsStepComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
               private route: ActivatedRoute,
               private router: Router,
-              private debitOrderProviderService: DebitOrderOperatorService) {
+              private debitOrderOperatorService: DebitOrderOperatorService) {
     this.createDebitOrderMandateForm();
 
-    console.log(`Client :: ${JSON.stringify(this.clientOptions)}`);
+    if (!this.operatorOptions) {
+      debitOrderOperatorService.getDebitOrderProviders()
+        .subscribe(value => {
+          if (value.responseCode === 'SUCCESS') {
+            this.operatorOptions = value.entity;
+          }
+        });
+    }
 
     this.mandateForm.patchValue({
       'debtorTelephoneContactDetails': [''],

@@ -1,4 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {DebitOrderOperatorService} from '../../../../../../organization/debit-order-operator/debit-order-operator.service';
 
 @Component({
   selector: 'mifosx-mandate-preview-step',
@@ -13,10 +14,19 @@ export class MandatePreviewStepComponent implements OnInit {
 
   @Input() operatorOptions: any;
 
-  constructor() {
+  constructor(private debitOrderOperatorService: DebitOrderOperatorService) {
   }
 
   ngOnInit(): void {
+
+    if (!this.operatorOptions) {
+      this.debitOrderOperatorService.getDebitOrderProviders()
+        .subscribe(value => {
+          if (value.responseCode === 'SUCCESS') {
+            this.operatorOptions = value.entity;
+          }
+        });
+    }
   }
 
 }

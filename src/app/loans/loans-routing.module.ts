@@ -240,59 +240,7 @@ const routes: Routes = [
           data: { title: extract('Loan Account Actions'), routeParamBreadcrumb: 'action' },
           resolve: {
             actionButtonData: LoanActionButtonResolver
-          },
-          // children: [
-          //   {
-          //     path: 'create',
-          //     component: CreateMandateComponent,
-          //     data: { title: extract('Create Mandate'), breadcrumb: 'Create Mandate' },
-          //     resolve: {
-          //       loanDetailsData: LoanDetailsResolver,
-          //       operatorData: DebitOrderOperatorsResolver
-          //     }
-          //   },
-          //   {
-          //     path: 'edit/:id',
-          //     component: EditMandateComponent,
-          //     data: { title: extract('Edit Mandate'), breadcrumb: 'Edit Mandate' },
-          //     resolve: {
-          //       loanDetailsData: LoanDetailsResolver,
-          //       operatorData: DebitOrderOperatorResolver
-          //     }
-          //   },
-          //   {
-          //     path: ':id',
-          //     component: ViewMandateComponent,
-          //     data: { title: extract('View Mandate'), breadcrumb: 'View Mandate' },
-          //     resolve: {
-          //       loanDetailsData: LoanDetailsResolver,
-          //       operatorData: DebitOrderOperatorResolver,
-          //       mandateData: MandateResolver
-          //     },
-          //     children: [
-          //       {
-          //         path: 'details',
-          //         component: MandateDetailsTabComponent,
-          //         data: { title: extract('View Mandate'), breadcrumb: 'View Mandate' },
-          //         resolve: {
-          //           loanDetailsData: LoanDetailsResolver,
-          //           operatorData: DebitOrderOperatorResolver,
-          //           mandateData: MandateResolver
-          //         },
-          //       },
-          //       {
-          //         path: 'settings',
-          //         component: MandateSettingsTabComponent,
-          //         data: { title: extract('View Mandate'), breadcrumb: 'View Mandate' },
-          //         resolve: {
-          //           loanDetailsData: LoanDetailsResolver,
-          //           operatorData: DebitOrderOperatorResolver,
-          //           mandateData: MandateResolver
-          //         },
-          //       }
-          //     ]
-          //   }
-          // ]
+          }
         },
         {
           path: 'transfer-funds',

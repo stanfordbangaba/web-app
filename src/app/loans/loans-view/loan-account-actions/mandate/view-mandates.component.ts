@@ -1,15 +1,15 @@
 /** Angular Imports */
-import { Component, OnInit, Input } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-import { MatDialog } from '@angular/material/dialog';
+import {Component, OnInit, Input} from '@angular/core';
+import {FormGroup, FormBuilder, Validators, FormControl} from '@angular/forms';
+import {ActivatedRoute, Router} from '@angular/router';
+import {MatDialog} from '@angular/material/dialog';
 
 /** Custom Services */
-import { LoansService } from 'app/loans/loans.service';
-import { DatePipe } from '@angular/common';
+import {LoansService} from 'app/loans/loans.service';
+import {DatePipe} from '@angular/common';
 
 /** Dialog Components */
-import { DeleteDialogComponent } from 'app/shared/delete-dialog/delete-dialog.component';
+import {DeleteDialogComponent} from 'app/shared/delete-dialog/delete-dialog.component';
 import {MandateService} from './mandate.service';
 
 /**
@@ -37,9 +37,13 @@ export class ViewMandatesComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(`DATA OBJECT :: ${JSON.stringify(this.dataObject)}`);
-    // this.mandateService.getMandatesByAccountNumber()
-    this.mandateDetails = [];
+    this.mandateService.getMandatesByAccountNumber(this.dataObject.accountNo)
+      .subscribe(value => {
+        if (value.responseCode === 'SUCCESS') {
+          this.mandateDetails = value.entity;
+        }
+      });
+
   }
 
   toggleMandatesDetailsOverview() {
@@ -48,7 +52,7 @@ export class ViewMandatesComponent implements OnInit {
 
   deleteMandate(id: any) {
     const deleteMandateDialogRef = this.dialog.open(DeleteDialogComponent, {
-      data: { deleteContext: `the mandate id: ${id}` }
+      data: {deleteContext: `the mandate id: ${id}`}
     });
     deleteMandateDialogRef.afterClosed().subscribe((response: any) => {
       if (response.delete) {
@@ -73,7 +77,7 @@ export class ViewMandatesComponent implements OnInit {
   private reload() {
     const clientId = this.dataObject.clientId;
     const url: string = this.router.url;
-    this.router.navigateByUrl(`/clients/${clientId}/loans-accounts`, { skipLocationChange: true })
+    this.router.navigateByUrl(`/clients/${clientId}/loans-accounts`, {skipLocationChange: true})
       .then(() => this.router.navigate([url]));
   }
 

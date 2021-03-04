@@ -1,7 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {ActivatedRoute, Router} from '@angular/router';
+import {ActivatedRoute, LoadChildren, Router} from '@angular/router';
 import {DebitOrderOperatorService} from '../../../../../../organization/debit-order-operator/debit-order-operator.service';
+import {LoansService} from '../../../../../loans.service';
 
 @Component({
   selector: 'mifosx-mandate-settings-step',
@@ -10,7 +11,7 @@ import {DebitOrderOperatorService} from '../../../../../../organization/debit-or
 })
 export class MandateSettingsStepComponent implements OnInit {
 
-  @Input() clientOptions: any;
+  clientOptions: any;
 
   settingsForm: FormGroup;
 
@@ -27,7 +28,7 @@ export class MandateSettingsStepComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
               private route: ActivatedRoute,
               private router: Router,
-              private debitOrderProviderService: DebitOrderOperatorService) {
+              private loansService: LoansService) {
   }
 
   ngOnInit(): void {
@@ -38,6 +39,15 @@ export class MandateSettingsStepComponent implements OnInit {
 
   setOptions() {
     // Set the debtor information
+    const loanId = this.route.snapshot.params['loanId'];
+    this.loansService.getLoanAccountResource(loanId, 'guarantors')
+      .subscribe(value => {
+        this.clientOptions = value;
+        this.settingsForm.patchValue({
+          'accountNumber': this.clientOptions.accountNo,
+          'debtorIdentification': this.clientOptions.externalId
+        });
+      });
   }
 
   setConditionalControls() {

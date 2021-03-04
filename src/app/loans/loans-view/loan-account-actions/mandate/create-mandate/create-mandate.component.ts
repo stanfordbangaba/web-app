@@ -3,6 +3,8 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {MandateService} from '../mandate.service';
 import {MandateDetailsStepComponent} from '../mandate-stepper/mandate-details-step/mandate-details-step.component';
 import {MandateSettingsStepComponent} from '../mandate-stepper/mandate-settings-step/mandate-settings-step.component';
+import {DebitOrderOperatorService} from '../../../../../organization/debit-order-operator/debit-order-operator.service';
+import {LoansService} from '../../../../loans.service';
 
 @Component({
   selector: 'mifosx-create-mandate',
@@ -21,12 +23,27 @@ export class CreateMandateComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
               private router: Router,
-              private mandateService: MandateService) {
-    this.route.data.subscribe((data: { operatorData: any, dataObject: any }) => {
-      this.operatorOptions = data.operatorData.entity;
-      this.clientOptions = data.dataObject;
-      console.log(`DATA OBJECT CREATE :: {}`, this.clientOptions);
-    });
+              private debitOrderOperatorService: DebitOrderOperatorService,
+              private mandateService: MandateService,
+              private loansService: LoansService) {
+
+    this.clientOptions = this.dataObject;
+
+    if (this.clientOptions) {
+      debitOrderOperatorService.getDebitOrderProviders()
+        .subscribe(value => {
+          if (value.responseCode === 'SUCCESS') {
+            this.operatorOptions = value.entity;
+          }
+        });
+    } else {
+      const loanId = this.route.snapshot.params['loanId'];
+      this.loansService.getLoanAccountResource(loanId, 'guarantors')
+        .subscribe(value => {
+          this.clientOptions = value;
+          console.log(`DATA IN CREATE :: ${JSON.stringify(this.clientOptions)}`);
+        });
+    }
   }
 
   ngOnInit(): void {

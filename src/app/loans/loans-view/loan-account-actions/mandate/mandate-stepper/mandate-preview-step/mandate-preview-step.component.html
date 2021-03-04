@@ -31,12 +31,12 @@
 
   <div fxFlexFill>
     <span fxFlex="40%">Start Date</span>
-    <span fxFlex="60%">{{ debitOrderMandate.startDate}}</span>
+    <span fxFlex="60%">{{ debitOrderMandate.startDate | date}}</span>
   </div>
 
   <div fxFlexFill>
     <span fxFlex="40%">End Date</span>
-    <span fxFlex="60%">{{ debitOrderMandate.endDate}}</span>
+    <span fxFlex="60%">{{ debitOrderMandate.endDate | date}}</span>
   </div>
 
   <div fxFlexFill>
@@ -50,12 +50,12 @@
 
   <div fxFlexFill>
     <span fxFlex="40%">Authorization Date</span>
-    <span fxFlex="60%">{{ debitOrderMandate.authorizationDate}}</span>
+    <span fxFlex="60%">{{ debitOrderMandate.authorizationDate | date}}</span>
   </div>
 
   <div fxFlexFill>
     <span fxFlex="40%">First Collection Day</span>
-    <span fxFlex="60%">{{ debitOrderMandate.firstCollectionDay}}</span>
+    <span fxFlex="60%">{{ debitOrderMandate.firstCollectionDay | date}}</span>
   </div>
 
   <div fxFlexFill>
@@ -135,7 +135,7 @@
     <fa-icon icon="arrow-left"></fa-icon>&nbsp;&nbsp;
     Previous
   </button>
-  <button mat-raised-button [routerLink]="['../']">
+  <button mat-raised-button [routerLink]="['../', 'View Mandates']">
     Cancel
   </button>
   <button mat-raised-button color="primary" (click)="submit.emit()">
