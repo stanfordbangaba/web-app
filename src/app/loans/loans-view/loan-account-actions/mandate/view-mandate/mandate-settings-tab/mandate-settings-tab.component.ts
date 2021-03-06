@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
+import {MandateService} from '../../mandate.service';
 
 @Component({
   selector: 'mifosx-mandate-settings-tab',
@@ -15,10 +16,15 @@ export class MandateSettingsTabComponent implements OnInit {
    * Fetches data from `resolve`
    * @param {ActivatedRoute} route Activated Route
    */
-  constructor(private route: ActivatedRoute) {
-    this.route.parent.data.subscribe((data: { mandateData: any }) => {
-      this.mandateData = data.mandateData.entity;
-    });
+  constructor(private route: ActivatedRoute,
+              private mandateService: MandateService) {
+    const mandateId = this.route.parent.snapshot.params['mandateId'];
+    console.log(`Mandate id :: ${mandateId}`);
+    this.mandateService.getMandate(mandateId)
+      .subscribe(value => {
+        console.log(`RESULT :: ${JSON.stringify(value)}`);
+        this.mandateData = value.entity;
+      });
   }
 
   ngOnInit(): void {

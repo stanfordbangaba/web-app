@@ -18,15 +18,22 @@ export class ViewMandateComponent implements OnInit {
               private router: Router,
               private route: ActivatedRoute,
               public dialog: MatDialog) {
+
   }
 
   ngOnInit(): void {
-    this.mandateData = {};
+    const mandateId = this.route.snapshot.params['mandateId'];
+    console.log(`Mandate id :: ${mandateId}`);
+    this.mandateService.getMandate(mandateId)
+      .subscribe(value => {
+        console.log(`RESULT :: ${JSON.stringify(value.entity)}`);
+        this.mandateData = value.entity;
+      });
   }
 
   activateMandate() {
     const activateMandateRef = this.dialog.open(ConfirmationDialogComponent, {
-      data: {heading: 'Activate ', dialogContext: 'Are you sure you want activate this?', type: 'Basic'}
+      data: {heading: 'Activate ', dialogContext: 'Are you sure you want activate this', type: 'Basic'}
     });
 
     activateMandateRef.afterClosed().subscribe(value => {
@@ -41,7 +48,7 @@ export class ViewMandateComponent implements OnInit {
 
   disableMandate() {
     const disableMandateRef = this.dialog.open(ConfirmationDialogComponent, {
-      data: {heading: 'Disable ', dialogContext: 'Are you sure you want disable this?', type: 'Strong'}
+      data: {heading: 'Disable ', dialogContext: 'Are you sure you want disable this', type: 'Strong'}
     });
 
     disableMandateRef.afterClosed().subscribe(value => {
@@ -73,7 +80,8 @@ export class ViewMandateComponent implements OnInit {
     window.location.reload();
   }
 
-  viewBatchItems() {
-
+  private back() {
+    this.router.navigate(['../../actions/', 'Manage Mandates'], {relativeTo: this.route});
   }
+
 }

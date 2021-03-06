@@ -1,27 +1,32 @@
 <div fxLayout="row" fxLayoutAlign="end" fxLayoutGap="2%" fxLayout.lt-md="column" class="container m-b-20">
   <span *mifosxHasPermission="'ACTIVATE_DEBIT_ORDER_MANDATE'">
-    <button mat-raised-button color="accent" (click)="activateMandate()" *ngIf="mandateData.status.value !== 'Active'">
+    <button mat-raised-button color="accent" (click)="activateMandate()" *ngIf="mandateData?.status !== 'ACTIVE'">
       <fa-icon icon="lock-open"></fa-icon>&nbsp;&nbsp;
       Activate
     </button>
   </span>
   <span *mifosxHasPermission="'DISABLE_DEBIT_ORDER_MANDATE'">
-    <button mat-raised-button color="warn" (click)="disableMandate()" *ngIf="mandateData.status.value !== 'Disabled'">
-      <fa-icon icon="lock-alt"></fa-icon>&nbsp;&nbsp;
+    <button mat-raised-button color="warn" (click)="disableMandate()"
+            *ngIf="(mandateData?.status !== 'DEACTIVATED') && (mandateData?.status !== 'SUSPENDED')">
+      <fa-icon icon="times"></fa-icon>&nbsp;&nbsp;
       Disable
     </button>
   </span>
-  <button mat-raised-button color="primary" [routerLink]="['edit']" *mifosxHasPermission="'UPDATE_DEBIT_ORDER_MANDATE'">
-    <fa-icon icon="edit"></fa-icon>&nbsp;&nbsp;
-    Edit
-  </button>
+<!--  <button mat-raised-button color="primary" [routerLink]="['edit']" *mifosxHasPermission="'UPDATE_DEBIT_ORDER_MANDATE'">-->
+<!--    <fa-icon icon="edit"></fa-icon>&nbsp;&nbsp;-->
+<!--    Edit-->
+<!--  </button>-->
   <button mat-raised-button color="warn" (click)="deleteMandate()" *mifosxHasPermission="'DELETE_DEBIT_ORDER_MANDATE'">
     <fa-icon icon="trash"></fa-icon>&nbsp;&nbsp;
     Delete
   </button>
-  <button mat-raised-button color="primary" (click)="viewBatchItems()" *mifosxHasPermission="'READ_DEBIT_ORDER_MANDATE_LIST'">
-    <fa-icon icon="list-ol"></fa-icon>&nbsp;&nbsp;
+  <button mat-raised-button color="primary" [routerLink]="['../../batch-items', mandateData?.id]" *mifosxHasPermission="'READ_DEBIT_ORDER_MANDATE_LIST'">
+    <fa-icon icon="sitemap"></fa-icon>&nbsp;&nbsp;
     Batch Items
+  </button>
+  <button mat-raised-button color="primary" (click)="back()">
+    <fa-icon icon="arrow-left"></fa-icon>&nbsp;&nbsp;
+    Back
   </button>
 </div>
 

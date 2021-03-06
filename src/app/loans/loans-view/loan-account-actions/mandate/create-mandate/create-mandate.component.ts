@@ -69,7 +69,7 @@ export class CreateMandateComponent implements OnInit {
   submit() {
 
     this.mandateService.createMandate(this.debitOrderMandate).subscribe((response: any) => {
-      this.router.navigate(['../', response.resourceId], {relativeTo: this.route});
+      this.router.navigate(['../../mandate/', response.entity.id, 'details'], {relativeTo: this.route});
     });
   }
 

@@ -1,5 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {DebitOrderOperatorService} from '../../../../../../organization/debit-order-operator/debit-order-operator.service';
+import {BankService} from '../../../../../../organization/debit-order-operator/bank.service';
 
 @Component({
   selector: 'mifosx-mandate-preview-step',
@@ -14,7 +15,10 @@ export class MandatePreviewStepComponent implements OnInit {
 
   @Input() operatorOptions: any;
 
-  constructor(private debitOrderOperatorService: DebitOrderOperatorService) {
+  bankOptions: any;
+
+  constructor(private debitOrderOperatorService: DebitOrderOperatorService,
+              private bankService: BankService) {
   }
 
   ngOnInit(): void {
@@ -25,6 +29,13 @@ export class MandatePreviewStepComponent implements OnInit {
           if (value.responseCode === 'SUCCESS') {
             this.operatorOptions = value.entity;
           }
+        });
+    }
+
+    if (!this.bankOptions) {
+      this.bankService.getBanks()
+        .subscribe(value => {
+          this.bankOptions = value.entity;
         });
     }
   }

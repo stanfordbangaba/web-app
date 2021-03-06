@@ -41,7 +41,27 @@
 
   <div fxFlexFill>
     <span fxFlex="40%">Operator</span>
-    <span fxFlex="60%">{{ debitOrderMandate.lmsOperatorId | find:operatorOptions: 'id': 'name'}}</span>
+    <span fxFlex="60%">{{ debitOrderMandate.operatorExternalId | find:operatorOptions: 'externalId': 'name'}}</span>
+  </div>
+
+  <div fxFlexFill>
+    <span fxFlex="40%">Bank</span>
+    <span fxFlex="60%">{{ debitOrderMandate.bankCode | find:bankOptions: 'code': 'name'}}</span>
+  </div>
+
+  <div fxFlexFill>
+    <span fxFlex="40%">Account Type</span>
+    <span fxFlex="60%">{{ debitOrderMandate.debtorAccountType }}</span>
+  </div>
+
+  <div fxFlexFill>
+    <span fxFlex="40%">Account Name</span>
+    <span fxFlex="60%">{{ debitOrderMandate.debtorAccountName }}</span>
+  </div>
+
+  <div fxFlexFill>
+    <span fxFlex="40%">Account Number</span>
+    <span fxFlex="60%">{{ debitOrderMandate.debtorAccountNumber }}</span>
   </div>
 
   <h3 class="mat-h3" fxFlexFill>Settings</h3>
@@ -135,7 +155,7 @@
     <fa-icon icon="arrow-left"></fa-icon>&nbsp;&nbsp;
     Previous
   </button>
-  <button mat-raised-button [routerLink]="['../', 'View Mandates']">
+  <button mat-raised-button [routerLink]="['../', 'Manage Mandates']">
     Cancel
   </button>
   <button mat-raised-button color="primary" (click)="submit.emit()">

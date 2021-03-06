@@ -36,19 +36,6 @@
         </mat-error>
       </mat-form-field>
 
-      <mat-form-field *ngIf="mandateForm.contains('lmsOperatorId')" fxFlex="48%">
-        <mat-label>Operator</mat-label>
-        <mat-select required formControlName="lmsOperatorId">
-          <mat-option *ngFor="let operator of operatorOptions" [value]="operator.id">
-            {{ operator.name }}
-          </mat-option>
-        </mat-select>
-        <mat-error *ngIf="mandateForm.controls.lmsOperatorId.hasError('required')">
-          Operator is <strong>required</strong>
-        </mat-error>
-      </mat-form-field>
-
-
       <mat-form-field>
         <mat-label>Contract Reference</mat-label>
         <input matInput required formControlName="contractReference">
@@ -56,6 +43,62 @@
           Contract Reference is <strong>required</strong>
         </mat-error>
       </mat-form-field>
+
+      <mat-form-field *ngIf="mandateForm.contains('operatorExternalId')" fxFlex="48%">
+        <mat-label>Operator</mat-label>
+        <mat-select required formControlName="operatorExternalId">
+          <mat-option *ngFor="let operator of operatorOptions" [value]="operator.externalId">
+            {{ operator.name }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="mandateForm.controls.operatorExternalId.hasError('required')">
+          Operator is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field *ngIf="mandateForm.contains('bankCode')" fxFlex="48%">
+        <mat-label>Bank</mat-label>
+        <mat-select required formControlName="bankCode">
+          <mat-option *ngFor="let bank of bankOptions" [value]="bank.code">
+            {{ bank.name }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="mandateForm.controls.bankCode.hasError('required')">
+          Bank is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field *ngIf="mandateForm.contains('debtorAccountType')" fxFlex="48%">
+        <mat-label>Account Type</mat-label>
+        <mat-select required formControlName="debtorAccountType">
+          <mat-option *ngFor="let dat of debtorAccountTypes" [value]="dat">
+            {{ dat }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="mandateForm.controls.debtorAccountType.hasError('required')">
+          Account Type is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+
+      <mat-form-field>
+        <mat-label>Account Name</mat-label>
+        <input matInput required formControlName="debtorAccountName">
+        <mat-error *ngIf="mandateForm.controls.debtorAccountName.hasError('required')">
+          Account Name is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+
+      <mat-form-field>
+        <mat-label>Account Number</mat-label>
+        <input matInput required formControlName="debtorAccountNumber">
+        <mat-error *ngIf="mandateForm.controls.debtorAccountNumber.hasError('required')">
+          Account Number is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+
 
       <mat-form-field>
         <mat-label>Start Date</mat-label>

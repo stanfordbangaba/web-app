@@ -1,4 +1,10 @@
 <div class="container">
+  <div fxLayout="row" fxLayoutAlign="end" fxLayoutGap="2%" fxLayout.lt-md="column" class="container m-b-20">
+    <button mat-raised-button color="primary" (click)="back()">
+      <fa-icon icon="arrow-left"></fa-icon>&nbsp;&nbsp;
+      Back
+    </button>
+  </div>
 
   <mat-card>
 
@@ -11,7 +17,7 @@
         <ng-container matColumnDef="reference">
           <th mat-header-cell *matHeaderCellDef> Reference </th>
           <td mat-cell *matCellDef="let batchItem">
-            <span *ngIf="!batchItem.reference">
+            <span *ngIf="batchItem.reference">
               {{batchItem.reference}}
             </span>
           </td>
@@ -20,7 +26,7 @@
         <ng-container matColumnDef="destinationAccount">
           <th mat-header-cell *matHeaderCellDef> Destinaton Account </th>
           <td mat-cell *matCellDef="let batchItem">
-            <span *ngIf="!batchItem.destinationAccount">
+            <span *ngIf="batchItem.destinationAccount">
               {{batchItem.destinationAccount}}
             </span>
           </td>
@@ -29,7 +35,7 @@
         <ng-container matColumnDef="originAccount">
           <th mat-header-cell *matHeaderCellDef> Origin Account </th>
           <td mat-cell *matCellDef="let batchItem">
-            <span *ngIf="!batchItem.originAccount">
+            <span *ngIf="batchItem.originAccount">
               {{batchItem.originAccount}}
             </span>
           </td>
@@ -38,7 +44,7 @@
         <ng-container matColumnDef="processingDate">
           <th mat-header-cell *matHeaderCellDef> Processing Date </th>
           <td mat-cell *matCellDef="let batchItem">
-            <span *ngIf="!batchItem.processingDate">
+            <span *ngIf="batchItem.processingDate">
               {{batchItem.processingDate | date}}
             </span>
           </td>
@@ -47,7 +53,7 @@
         <ng-container matColumnDef="amount">
           <th mat-header-cell *matHeaderCellDef> Amount </th>
           <td mat-cell *matCellDef="let batchItem">
-            <span *ngIf="!batchItem.amount">
+            <span *ngIf="batchItem.amount">
               {{batchItem.amount}}
             </span>
           </td>
@@ -56,7 +62,7 @@
         <ng-container matColumnDef="amountCurrencyCode">
           <th mat-header-cell *matHeaderCellDef> Amount Currency </th>
           <td mat-cell *matCellDef="let batchItem">
-            <span *ngIf="!batchItem.amountCurrencyCode">
+            <span *ngIf="batchItem.amountCurrencyCode">
               {{batchItem.amountCurrencyCode}}
             </span>
           </td>
@@ -65,7 +71,7 @@
         <ng-container matColumnDef="itemStatus">
           <th mat-header-cell *matHeaderCellDef> Item Status </th>
           <td mat-cell *matCellDef="let batchItem">
-            <span *ngIf="!batchItem.itemStatus">
+            <span *ngIf="batchItem.itemStatus">
               {{batchItem.itemStatus}}
             </span>
           </td>
@@ -76,7 +82,7 @@
         <ng-container matColumnDef="action">
           <th mat-header-cell *matHeaderCellDef> Action </th>
           <td mat-cell *matCellDef="let batchItem; let id = index">
-            <span *ngIf="!batchItem.debitOrderMandateStatus">
+            <span *ngIf="batchItem.itemStatus">
               <button mat-raised-button class="account-action-button" color="primary"
                       *mifosxHasPermission="'READ_DEBIT_ORDER_MANDATE_BATCH_ITEM'" (click)="viewBatchItemDetail(batchItem)">
                 <fa-icon icon="eye"></fa-icon>&nbsp;&nbsp;

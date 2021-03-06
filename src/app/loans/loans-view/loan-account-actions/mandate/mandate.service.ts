@@ -36,7 +36,7 @@ export class MandateService {
   }
 
   getMandateBatchItems(id: any): Observable<any> {
-    return null;
+    return this.http.get(`/d-o/debit-order-mandates/${id}/batch-items`);
   }
 
   getMandates(): Observable<any> {

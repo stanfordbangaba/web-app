@@ -23,10 +23,10 @@ import {MandateService} from './mandate.service';
 export class ViewMandatesComponent implements OnInit {
 
   @Input() dataObject: any;
-  mandateDetails: any;
+  mandateDetails: [];
   showDeletedMandatesAccounts = false;
   loanId: any;
-  mandatesDisplayedColumns: string[] = ['startDate', 'endDate', 'debitOrderDueDate', 'additionalFee', 'debitOrderMandateNumber', 'debitOrderMandateStatus', 'action'];
+  mandatesDisplayedColumns: string[] = ['startDate', 'endDate', 'referenceNumber', 'collectionAmount', 'authorizationDate', 'status', 'action'];
 
 
   constructor(public dialog: MatDialog,
@@ -64,10 +64,7 @@ export class ViewMandatesComponent implements OnInit {
   }
 
   viewMandateDetail(mandateData: any) {
-    // const viewMandateDetailsDialogRef = this.dialog.open(LoansAccountViewMandateDetailsDialogComponent, {
-    //   data: { mandateData: mandateData }
-    // });
-    // viewMandateDetailsDialogRef.afterClosed().subscribe(() => {});
+    this.router.navigate([mandateData.id, '/general']);
   }
 
   /**

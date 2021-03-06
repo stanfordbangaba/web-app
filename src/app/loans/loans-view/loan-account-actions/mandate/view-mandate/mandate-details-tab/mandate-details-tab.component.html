@@ -3,39 +3,59 @@
   <mat-list>
 
     <mat-list-item>
-      First Name : {{ mandateData.firstName ? mandateData.firstName : 'N/A' }}
+      First Name : {{ mandateData?.firstName ? mandateData?.firstName : 'N/A' }}
     </mat-list-item>
 
     <mat-list-item>
-      Last Name : {{ mandateData.lastName ? mandateData.lastName : 'N/A' }}
+      Last Name : {{ mandateData?.lastName ? mandateData?.lastName : 'N/A' }}
     </mat-list-item>
 
     <mat-list-item>
-      Reference Number : {{ mandateData.referenceNumber ? mandateData.referenceNumber : 'N/A' }}
+      Reference Number : {{ mandateData?.referenceNumber ? mandateData?.referenceNumber : 'N/A' }}
     </mat-list-item>
 
     <mat-list-item>
-      Contract Reference : {{ mandateData.contractReference ? mandateData.contractReference : 'N/A' }}
+      Contract Reference : {{ mandateData?.contractReference ? mandateData?.contractReference : 'N/A' }}
     </mat-list-item>
 
     <mat-list-item>
-      Entry Class : {{ mandateData.entryClass ? mandateData.entryClass : 'N/A' }}
+      Entry Class : {{ mandateData?.entryClass ? mandateData?.entryClass : 'N/A' }}
     </mat-list-item>
 
     <mat-list-item>
-      Operator :
+      Operator : {{mandateData?.operatorExternalId ? (mandateData?.operatorExternalId | find: operatorOptions: 'id': 'name') : 'N/A'}}
     </mat-list-item>
 
     <mat-list-item>
-      Status : {{ mandateData.status ? mandateData.status : 'N/A' }}
+      LMS Operator : {{mandateData?.lmsOperatorId}}
     </mat-list-item>
 
     <mat-list-item>
-      Start Date : {{ mandateData.startDate ? (mandateData.startDate | date) : 'Unassigned' }}
+      Bank :  {{mandateData?.bankAccount.bank.name}}
     </mat-list-item>
 
     <mat-list-item>
-      End Date : {{ mandateData.endDate ? (mandateData.endDate | date) : 'Unassigned' }}
+      Account Type : {{mandateData?.bankAccount.debtorAccountType}}
+    </mat-list-item>
+
+    <mat-list-item>
+      Account Name : {{mandateData?.bankAccount.accountName}}
+    </mat-list-item>
+
+    <mat-list-item>
+      Account Number : {{mandateData?.bankAccount.accountNumber}}
+    </mat-list-item>
+
+    <mat-list-item>
+      Status : {{ mandateData?.status ? mandateData?.status : 'N/A' }}
+    </mat-list-item>
+
+    <mat-list-item>
+      Start Date : {{ mandateData?.startDate ? (mandateData?.startDate | date) : 'Unassigned' }}
+    </mat-list-item>
+
+    <mat-list-item>
+      End Date : {{ mandateData?.endDate ? (mandateData?.endDate | date) : 'Unassigned' }}
     </mat-list-item>
 
 
