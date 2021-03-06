@@ -41,7 +41,6 @@ export class CreateMandateComponent implements OnInit {
       this.loansService.getLoanAccountResource(loanId, 'guarantors')
         .subscribe(value => {
           this.clientOptions = value;
-          console.log(`DATA IN CREATE :: ${JSON.stringify(this.clientOptions)}`);
         });
     }
   }

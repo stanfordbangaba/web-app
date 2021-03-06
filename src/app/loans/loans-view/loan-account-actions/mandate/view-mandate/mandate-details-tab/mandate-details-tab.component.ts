@@ -25,10 +25,8 @@ export class MandateDetailsTabComponent implements OnInit {
     });
 
     const mandateId = this.route.parent.snapshot.params['mandateId'];
-    console.log(`Mandate id :: ${mandateId}`);
     this.mandateService.getMandate(mandateId)
       .subscribe(value => {
-        console.log(`RESULT :: ${JSON.stringify(value)}`);
         this.mandateData = value.entity;
       });
   }

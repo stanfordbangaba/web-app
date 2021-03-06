@@ -23,10 +23,8 @@ export class ViewMandateComponent implements OnInit {
 
   ngOnInit(): void {
     const mandateId = this.route.snapshot.params['mandateId'];
-    console.log(`Mandate id :: ${mandateId}`);
     this.mandateService.getMandate(mandateId)
       .subscribe(value => {
-        console.log(`RESULT :: ${JSON.stringify(value.entity)}`);
         this.mandateData = value.entity;
       });
   }
