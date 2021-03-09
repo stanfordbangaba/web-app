@@ -13,6 +13,8 @@ export class MandateDetailsTabComponent implements OnInit {
   /** data */
   mandateData: any;
   operatorOptions: any;
+  tab1: any = false;
+  tab2: any = false;
 
   /**
    * Fetches data from `resolve`
@@ -27,6 +29,7 @@ export class MandateDetailsTabComponent implements OnInit {
     const mandateId = this.route.parent.snapshot.params['mandateId'];
     this.mandateService.getMandate(mandateId)
       .subscribe(value => {
+        this.tab1 = true;
         this.mandateData = value.entity;
       });
   }

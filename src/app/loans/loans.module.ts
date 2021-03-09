@@ -76,6 +76,7 @@ import { MandateSettingsStepComponent } from './loans-view/loan-account-actions/
 import { MandatePreviewStepComponent } from './loans-view/loan-account-actions/mandate/mandate-stepper/mandate-preview-step/mandate-preview-step.component';
 import { MandateDetailsTabComponent } from './loans-view/loan-account-actions/mandate/view-mandate/mandate-details-tab/mandate-details-tab.component';
 import { MandateSettingsTabComponent } from './loans-view/loan-account-actions/mandate/view-mandate/mandate-settings-tab/mandate-settings-tab.component';
+import { RejectMandateComponent } from './loans-view/loan-account-actions/mandate/actions/reject-mandate/reject-mandate.component';
 
 /**
  * Loans Module
@@ -149,7 +150,8 @@ import { MandateSettingsTabComponent } from './loans-view/loan-account-actions/m
     MandateSettingsStepComponent,
     MandatePreviewStepComponent,
     MandateDetailsTabComponent,
-    MandateSettingsTabComponent
+    MandateSettingsTabComponent,
+    RejectMandateComponent
   ],
   providers: [DatePipe],
 })

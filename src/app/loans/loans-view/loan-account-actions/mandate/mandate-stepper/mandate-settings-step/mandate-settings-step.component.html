@@ -76,6 +76,10 @@
         </mat-error>
       </mat-form-field>
 
+      <mat-checkbox labelPosition="before" formControlName="trackingIndicator" class="tracking-indicator">
+        Is Tracking Indicator
+      </mat-checkbox>
+
       <mat-form-field *ngIf="settingsForm.contains('adjustmentAmountType')" fxFlex="48%">
         <mat-label>Adjustment Amount Type</mat-label>
         <mat-select required formControlName="adjustmentAmountType">

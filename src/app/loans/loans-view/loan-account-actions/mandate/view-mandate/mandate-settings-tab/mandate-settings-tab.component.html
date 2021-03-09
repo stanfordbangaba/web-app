@@ -1,4 +1,4 @@
-<div class="tab-container mat-typography">
+<div class="tab-container mat-typography" *ngIf="tab2">
 
   <mat-list>
 
@@ -47,8 +47,12 @@
     </mat-list-item>
 
     <mat-list-item>
-      Account Number : {{ mandateData?.accountNumber ? mandateData?.accountNumber : 'N/A' }}
+      Tracking Indicator : {{ mandateData?.trackingIndicator ? mandateData?.trackingIndicator : 'N/A' }}
     </mat-list-item>
+
+<!--    <mat-list-item>-->
+<!--      Account Number : {{ mandateData?.accountNumber ? mandateData?.accountNumber : 'N/A' }}-->
+<!--    </mat-list-item>-->
 
     <mat-list-item>
       Debtor Identification : {{ mandateData?.debtorIdentification ? mandateData?.debtorIdentification : 'N/A' }}

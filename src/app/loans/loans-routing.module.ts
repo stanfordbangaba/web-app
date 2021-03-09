@@ -55,6 +55,7 @@ import {DebitOrderOperatorsResolver} from '../organization/debit-order-operator/
 import {MandateBatchItemsComponent} from './loans-view/loan-account-actions/mandate/view-mandate/mandate-batch-items/mandate-batch-items.component';
 import {DebitOrderBatchItemsResolver} from './common-resolvers/debit-order-batch-items.resolver';
 import {BanksResolver} from '../organization/debit-order-operator/common-resolvers/banks.resolver';
+import {RejectMandateComponent} from './loans-view/loan-account-actions/mandate/actions/reject-mandate/reject-mandate.component';
 
 /** Loans Route. */
 const routes: Routes = [
@@ -275,8 +276,7 @@ const routes: Routes = [
             data: {title: extract('View Mandate'), breadcrumb: 'View Mandate'},
             resolve: {
               loanDetailsData: LoanDetailsResolver,
-              operatorData: DebitOrderOperatorResolver,
-              mandateData: MandateResolver
+              operatorData: DebitOrderOperatorResolver
             },
             children: [
               {
@@ -286,7 +286,6 @@ const routes: Routes = [
                 resolve: {
                   loanDetailsData: LoanDetailsResolver,
                   operatorData: DebitOrderOperatorResolver,
-                  mandateData: MandateResolver,
                   operatorOptions: DebitOrderOperatorsResolver
                 },
               },
@@ -296,11 +295,26 @@ const routes: Routes = [
                 data: {title: extract('View Mandate'), breadcrumb: 'View Mandate'},
                 resolve: {
                   loanDetailsData: LoanDetailsResolver,
-                  operatorData: DebitOrderOperatorResolver,
-                  mandateData: MandateResolver
+                  operatorData: DebitOrderOperatorResolver
                 },
               }
             ]
+          },
+          {
+            path: 'edit/:mandateId',
+            component: EditMandateComponent,
+            data: {title: extract('Edit Mandate'), breadcrumb: 'Edit Mandate'},
+            resolve: {
+              mandateData: MandateResolver
+            }
+          },
+          {
+            path: 'reject/:mandateId',
+            component: RejectMandateComponent,
+            data: {title: extract('Cancel Mandate'), breadcrumb: 'Cancel Mandate'},
+            resolve: {
+              mandateData: MandateResolver
+            }
           },
           {
             path: 'batch-items/:mandateId',
@@ -309,9 +323,7 @@ const routes: Routes = [
             resolve: {
               batchItems: DebitOrderBatchItemsResolver
             }
-
-          }
-          ,
+          },
           {
             path: 'actions/:action',
             component: LoanAccountActionsComponent,

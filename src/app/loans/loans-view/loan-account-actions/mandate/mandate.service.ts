@@ -31,8 +31,8 @@ export class MandateService {
     return this.http.get(`/d-o/debit-order-mandates/activate/${id}`);
   }
 
-  disableMandate(id: any): Observable<any> {
-    return this.http.get(`/d-o/debit-order-mandates/disable/${id}`);
+  disableMandate(id: any, data: any): Observable<any> {
+    return this.http.post(`/d-o/debit-order-mandates/disable/${id}`, data);
   }
 
   getMandateBatchItems(id: any): Observable<any> {

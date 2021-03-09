@@ -45,18 +45,7 @@ export class ViewMandateComponent implements OnInit {
   }
 
   disableMandate() {
-    const disableMandateRef = this.dialog.open(ConfirmationDialogComponent, {
-      data: {heading: 'Disable ', dialogContext: 'Are you sure you want disable this', type: 'Strong'}
-    });
-
-    disableMandateRef.afterClosed().subscribe(value => {
-      if (value.confirm) {
-        this.mandateService.disableMandate(this.mandateData.id)
-          .subscribe(value1 => {
-            this.reload();
-          });
-      }
-    });
+    this.router.navigate(['../../reject', this.mandateData.id], {relativeTo: this.route});
   }
 
   deleteMandate() {
@@ -78,7 +67,7 @@ export class ViewMandateComponent implements OnInit {
     window.location.reload();
   }
 
-  private back() {
+  back() {
     this.router.navigate(['../../actions/', 'Manage Mandates'], {relativeTo: this.route});
   }
 

@@ -24,7 +24,7 @@ export class MandateResolver implements Resolve<Object> {
      * @returns {Observable<any>}
      */
     resolve(route: ActivatedRouteSnapshot): Observable<any> {
-        const id = route.paramMap.get('id') || route.parent.paramMap.get('id') || route.parent.parent.paramMap.get('id');
+        const id = route.paramMap.get('mandateId') || route.parent.paramMap.get('mandateId') || route.parent.parent.paramMap.get('mandateId');
         return this.mandateService.getMandate(id);
     }
 
