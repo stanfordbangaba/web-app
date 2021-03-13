@@ -79,6 +79,7 @@ export class MandateSettingsStepComponent implements OnInit {
       'mandateValueType': [''],
       'installmentOccurrence': [''],
       'debtorIdentificationType': ['DEFAULT'],
+      'trackingIndicator': [false],
     });
   }
 

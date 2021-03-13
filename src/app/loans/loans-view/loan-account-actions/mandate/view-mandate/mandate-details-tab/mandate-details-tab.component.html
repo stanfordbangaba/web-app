@@ -15,6 +15,14 @@
     </mat-list-item>
 
     <mat-list-item>
+      ID Number : {{ mandateData?.nationalId ? mandateData?.nationalId : 'N/A' }}
+    </mat-list-item>
+
+    <mat-list-item>
+      EC Number : {{ mandateData?.ecNumber ? mandateData?.ecNumber : 'N/A' }}
+    </mat-list-item>
+
+    <mat-list-item>
       Contract Reference : {{ mandateData?.contractReference ? mandateData?.contractReference : 'N/A' }}
     </mat-list-item>
 

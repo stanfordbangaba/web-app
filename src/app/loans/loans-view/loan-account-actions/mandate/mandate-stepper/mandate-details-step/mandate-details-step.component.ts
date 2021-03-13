@@ -49,15 +49,19 @@ export class MandateDetailsStepComponent implements OnInit {
         });
     }
 
+
     // Set the debtor information
     const loanId = this.route.snapshot.params['loanId'];
     this.loansService.getLoanAccountResource(loanId, 'guarantors')
       .subscribe(value => {
         this.clientOptions = value;
+        console.log(`Client options :: ${JSON.stringify(this.clientOptions)}`);
         const clientName = this.clientOptions.clientName.split(' ');
         this.mandateForm.patchValue({
           'firstName': clientName[0],
           'lastName': clientName[1],
+          'debtorAccountName': this.clientOptions.clientName,
+          'nationalId': this.clientOptions.externalId,
           'lmsOperatorId': authenticationService.getCredentials().username
         });
       });
@@ -76,7 +80,9 @@ export class MandateDetailsStepComponent implements OnInit {
       'debtorAccountNumber': ['', [Validators.required]],
       'debtorAccountType': ['', [Validators.required]],
       'bankCode': ['', [Validators.required]],
+      'nationalId': ['', [Validators.required]],
       'contractReference': ['', [Validators.required]],
+      'ecNumber': [''],
       'entryClass': [''],
       'debtorTelephoneContactDetails': [''],
       'debtorEmailContactDetails': [''],

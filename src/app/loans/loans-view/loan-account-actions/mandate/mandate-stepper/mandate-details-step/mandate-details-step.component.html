@@ -29,6 +29,22 @@
       </mat-form-field>
 
       <mat-form-field>
+        <mat-label>EC Number</mat-label>
+        <input matInput required formControlName="ecNumber">
+        <mat-error *ngIf="mandateForm.controls.ecNumber.hasError('required')">
+          EC Number is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>ID Number</mat-label>
+        <input matInput required formControlName="nationalId">
+        <mat-error *ngIf="mandateForm.controls.nationalId.hasError('required')">
+          ID Number is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
         <mat-label>Reference Number</mat-label>
         <input matInput required formControlName="referenceNumber">
         <mat-error *ngIf="mandateForm.controls.referenceNumber.hasError('required')">
