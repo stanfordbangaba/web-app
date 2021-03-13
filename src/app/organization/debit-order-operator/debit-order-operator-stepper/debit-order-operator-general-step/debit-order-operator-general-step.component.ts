@@ -12,6 +12,8 @@ export class DebitOrderOperatorGeneralStepComponent implements OnInit {
 
   providerForm: FormGroup;
 
+  channelOptions = ['ISO20022_ENS', 'NDASENDA'];
+
   constructor(private formBuilder: FormBuilder,
               private route: ActivatedRoute,
               private router: Router,
@@ -27,7 +29,8 @@ export class DebitOrderOperatorGeneralStepComponent implements OnInit {
       'name': ['', [Validators.required, Validators.pattern('(^[A-z]).*')]],
       'shortName': ['', [Validators.required]],
       'externalId': ['', [Validators.required]],
-      'description': ['']
+      'description': [''],
+      'channelCode': ['', [Validators.required]]
     });
   }
 

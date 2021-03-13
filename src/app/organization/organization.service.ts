@@ -798,10 +798,11 @@ export class OrganizationService {
     if (legalFormType.length) {
       httpParams = httpParams.set('legalFormType', legalFormType);
     }
+    console.log(`legalFormType :: ${legalFormType}`);
     const formData = new FormData();
     formData.append('file', file);
     formData.append('locale', this.settingsService.language.code);
-    formData.append('datefFormat', this.settingsService.dateFormat);
+    formData.append('dateFormat', this.settingsService.dateFormat);
     return this.http.post(`${urlSuffix}/uploadtemplate`, formData, {params: httpParams});
   }
 

@@ -49,6 +49,8 @@ export class ViewBulkImportComponent implements OnInit {
     'download'
   ];
 
+  legalFormField = 'Person';
+
   /** Paginator for imports table. */
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   /** Sorter for imports table. */
@@ -157,9 +159,10 @@ export class ViewBulkImportComponent implements OnInit {
     let legalFormType = '';
     /** Only for Client Bulk Imports */
     if (this.bulkImport.name === 'Clients') {
-      if (this.template.name.toLowerCase().includes('entity')) {
-        legalFormType = 'CLIENTS_ENTTTY';
-      } else if (this.template.name.toLowerCase().includes('person')) {
+      console.log(`legal form name :: ${this.legalFormField}`);
+      if (this.legalFormField === 'Entity') {
+        legalFormType = 'CLIENTS_ENTITY';
+      } else if (this.legalFormField === 'Person') {
         legalFormType = 'CLIENTS_PERSON';
       }
     }

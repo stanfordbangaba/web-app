@@ -31,6 +31,18 @@
         </mat-error>
       </mat-form-field>
 
+      <mat-form-field *ngIf="providerForm.contains('channelCode')" fxFlex="48%">
+        <mat-label>Channel Code</mat-label>
+        <mat-select required formControlName="channelCode">
+          <mat-option *ngFor="let channel of channelOptions" [value]="channel">
+            {{ channel }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="providerForm.controls.channelCode.hasError('required')">
+          Channel code is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
       <mat-form-field>
         <mat-label>Description</mat-label>
         <textarea matInput formControlName="description"></textarea>

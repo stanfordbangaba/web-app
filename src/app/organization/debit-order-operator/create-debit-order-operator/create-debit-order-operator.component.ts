@@ -50,7 +50,7 @@ export class CreateDebitOrderOperatorComponent implements OnInit {
   submit() {
 
     this.debitOrderOperatorService.createDebitOrderProvider(this.debitOrderOperator).subscribe((response: any) => {
-      this.router.navigate(['../', response.resourceId], {relativeTo: this.route});
+      this.router.navigate(['../', response.entity.id, 'general'], {relativeTo: this.route});
     });
   }
 
