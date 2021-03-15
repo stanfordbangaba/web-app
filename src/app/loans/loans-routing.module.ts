@@ -56,6 +56,7 @@ import {MandateBatchItemsComponent} from './loans-view/loan-account-actions/mand
 import {DebitOrderBatchItemsResolver} from './common-resolvers/debit-order-batch-items.resolver';
 import {BanksResolver} from '../organization/debit-order-operator/common-resolvers/banks.resolver';
 import {RejectMandateComponent} from './loans-view/loan-account-actions/mandate/actions/reject-mandate/reject-mandate.component';
+import {MandateAccountTabComponent} from './loans-view/loan-account-actions/mandate/view-mandate/mandate-account/mandate-account-tab.component';
 
 /** Loans Route. */
 const routes: Routes = [
@@ -276,7 +277,6 @@ const routes: Routes = [
             data: {title: extract('View Mandate'), breadcrumb: 'View Mandate'},
             resolve: {
               loanDetailsData: LoanDetailsResolver,
-              operatorData: DebitOrderOperatorResolver
             },
             children: [
               {
@@ -284,19 +284,18 @@ const routes: Routes = [
                 component: MandateDetailsTabComponent,
                 data: {title: extract('View Mandate'), breadcrumb: 'View Mandate'},
                 resolve: {
-                  loanDetailsData: LoanDetailsResolver,
-                  operatorData: DebitOrderOperatorResolver,
                   operatorOptions: DebitOrderOperatorsResolver
                 },
+              },
+              {
+                path: 'account-information',
+                component: MandateAccountTabComponent,
+                data: {title: extract('View Mandate'), breadcrumb: 'View Mandate'},
               },
               {
                 path: 'settings',
                 component: MandateSettingsTabComponent,
                 data: {title: extract('View Mandate'), breadcrumb: 'View Mandate'},
-                resolve: {
-                  loanDetailsData: LoanDetailsResolver,
-                  operatorData: DebitOrderOperatorResolver
-                },
               }
             ]
           },

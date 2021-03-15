@@ -14,7 +14,6 @@ export class MandateDetailsTabComponent implements OnInit {
   mandateData: any;
   operatorOptions: any;
   tab1: any = false;
-  tab2: any = false;
 
   /**
    * Fetches data from `resolve`
