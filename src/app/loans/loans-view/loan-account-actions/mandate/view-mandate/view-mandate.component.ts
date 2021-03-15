@@ -68,7 +68,7 @@ export class ViewMandateComponent implements OnInit {
   }
 
   back() {
-    this.router.navigate(['../../actions/', 'Manage Mandates'], {relativeTo: this.route});
+    this.router.navigate(['../../actions/', 'Manage DD Mandates'], {relativeTo: this.route});
   }
 
 }

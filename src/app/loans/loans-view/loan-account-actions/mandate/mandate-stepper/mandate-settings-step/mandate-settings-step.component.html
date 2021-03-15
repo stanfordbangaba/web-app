@@ -4,6 +4,18 @@
 
     <div fxLayout="column">
 
+      <mat-form-field *ngIf="settingsForm.contains('installmentOccurrence')" fxFlex="48%">
+        <mat-label>Installment Occurrence</mat-label>
+        <mat-select required formControlName="installmentOccurrence">
+          <mat-option *ngFor="let io of installmentOccurrences" [value]="io.code">
+            {{ io.name }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="settingsForm.controls.installmentOccurrence.hasError('required')">
+          Installment Occurrence is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
       <mat-form-field>
         <mat-label>Authorization Date</mat-label>
         <input matInput [min]="minDate" [matDatepicker]="authorizationDate" required formControlName="authorizationDate">
@@ -24,7 +36,7 @@
         </mat-error>
       </mat-form-field>
 
-      <mat-form-field *ngIf="settingsForm.contains('debitOrderFrequency')" fxFlex="48%">
+      <mat-form-field *ngIf="settingsForm.value.installmentOccurrence === 'RCUR'" fxFlex="48%">
         <mat-label>Debit Order Frequency</mat-label>
         <mat-select required formControlName="debitOrderFrequency">
           <mat-option *ngFor="let io of debitOrderFrequencies" [value]="io">
@@ -46,7 +58,7 @@
 
       <mat-form-field>
         <mat-label>Additional Fee</mat-label>
-        <input type="number" matInput required formControlName="additionalFee">
+        <input type="number" matInput formControlName="additionalFee">
         <mat-error *ngIf="settingsForm.controls.additionalFee.hasError('required')">
           Additional Fee is <strong>required</strong>
         </mat-error>
@@ -77,10 +89,10 @@
       </mat-form-field>
 
       <mat-checkbox labelPosition="before" formControlName="trackingIndicator" class="tracking-indicator">
-        Is Tracking Indicator
+        Enable Tracking Indicator
       </mat-checkbox>
 
-      <mat-form-field *ngIf="settingsForm.contains('adjustmentAmountType')" fxFlex="48%">
+      <mat-form-field *ngIf="settingsForm.value.installmentOccurrence === 'RCUR'" fxFlex="48%">
         <mat-label>Adjustment Amount Type</mat-label>
         <mat-select required formControlName="adjustmentAmountType">
           <mat-option *ngFor="let aat of adjustmentAmountTypes" [value]="aat">
@@ -92,7 +104,7 @@
         </mat-error>
       </mat-form-field>
 
-      <mat-form-field *ngIf="settingsForm.value.adjustmentAmountType === 'RATE'">
+      <mat-form-field *ngIf="settingsForm.value.installmentOccurrence === 'RCUR'">
         <mat-label>Adjustment Rate</mat-label>
         <input type="number" matInput required formControlName="adjustmentRate">
         <mat-error *ngIf="settingsForm.controls.adjustmentRate.hasError('required')">
@@ -100,7 +112,7 @@
         </mat-error>
       </mat-form-field>
 
-      <mat-form-field *ngIf="settingsForm.value.adjustmentAmountType === 'AMOUNT'">
+      <mat-form-field *ngIf="settingsForm.value.installmentOccurrence === 'RCUR'">
         <mat-label>Adjustment Amount</mat-label>
         <input type="number" matInput required formControlName="adjustmentAmount">
         <mat-error *ngIf="settingsForm.controls.adjustmentAmount.hasError('required')">
@@ -117,18 +129,6 @@
         </mat-select>
         <mat-error *ngIf="settingsForm.controls.mandateValueType.hasError('required')">
           Mandate Value Type is <strong>required</strong>
-        </mat-error>
-      </mat-form-field>
-
-      <mat-form-field *ngIf="settingsForm.contains('installmentOccurrence')" fxFlex="48%">
-        <mat-label>Installment Occurrence</mat-label>
-        <mat-select required formControlName="installmentOccurrence">
-          <mat-option *ngFor="let io of installmentOccurrences" [value]="io">
-            {{ io }}
-          </mat-option>
-        </mat-select>
-        <mat-error *ngIf="settingsForm.controls.installmentOccurrence.hasError('required')">
-          Installment Occurrence is <strong>required</strong>
         </mat-error>
       </mat-form-field>
 

@@ -6,7 +6,7 @@
     </button>
   </span>
   <span *mifosxHasPermission="'DISABLE_DEBIT_ORDER_OPERATOR'">
-    <button mat-raised-button color="accent" (click)="disableProvider()" *ngIf="providerData.status !== 'SUSPENDED'">
+    <button mat-raised-button color="warn" (click)="disableProvider()" *ngIf="providerData.status !== 'SUSPENDED'">
       <fa-icon icon="times"></fa-icon>&nbsp;&nbsp;
       Disable
     </button>

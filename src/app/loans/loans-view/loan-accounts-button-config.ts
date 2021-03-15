@@ -122,7 +122,7 @@ export class LoansAccountButtonConfiguration {
       case 'Active':
         this.optionArray = [
           {
-            name: 'Manage Mandates',
+            name: 'Manage DD Mandates',
             taskPermissionName: 'VIEW_DEBIT_ORDER_MANDATES',
           },
           {

@@ -43,6 +43,10 @@
              [active]="details.isActive">
             Details
           </a>
+          <a mat-tab-link [routerLink]="['./account-information']" routerLinkActive #accountinformation="routerLinkActive"
+             [active]="accountinformation.isActive">
+            Account Information
+          </a>
           <a mat-tab-link [routerLink]="['./settings']" routerLinkActive #settings="routerLinkActive"
              [active]="settings.isActive">
             Settings

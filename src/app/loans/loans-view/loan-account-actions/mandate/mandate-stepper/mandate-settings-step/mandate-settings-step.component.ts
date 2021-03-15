@@ -19,7 +19,7 @@ export class MandateSettingsStepComponent implements OnInit {
 
   mandateValueTypes = ['FIXED', 'VARIABLE', 'USAGE'];
 
-  installmentOccurrences = ['OOFF', 'RCUR'];
+  installmentOccurrences = [{code: 'OOFF', name: 'ONCE OFF'}, {code: 'RCUR', name: 'RECURRENCE'}];
 
   debitOrderFrequencies = ['MONTHLY', 'QUARTERLY', 'ANNUALLY', 'BIANNUALLY', 'MONTH_END'];
 

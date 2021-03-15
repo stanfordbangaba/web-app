@@ -30,9 +30,9 @@ export class DebitOrderOperatorBankStepComponent implements OnInit {
 
   createDebitOrderProviderForm() {
     this.bankForm = this.formBuilder.group({
-      'accountName': ['', [Validators.required]],
-      'accountNumber': ['', [Validators.required]],
-      'bankCode': ['', [Validators.required]]
+      'accountName': [''],
+      'accountNumber': [''],
+      'bankCode': ['']
     });
   }
 

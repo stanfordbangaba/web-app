@@ -119,6 +119,11 @@
   </div>
 
   <div fxFlexFill>
+    <span fxFlex="40%">Enable Tracking Indicator</span>
+    <span fxFlex="60%">{{ debitOrderMandate.trackingIndicator}}</span>
+  </div>
+
+  <div fxFlexFill>
     <span fxFlex="40%">Adjustment Amount Type</span>
     <span fxFlex="60%">{{ debitOrderMandate.adjustmentAmountType}}</span>
   </div>
@@ -165,7 +170,7 @@
     <fa-icon icon="arrow-left"></fa-icon>&nbsp;&nbsp;
     Previous
   </button>
-  <button mat-raised-button [routerLink]="['../', 'Manage Mandates']">
+  <button mat-raised-button [routerLink]="['../', 'Manage DD Mandates']">
     Cancel
   </button>
   <button mat-raised-button color="primary" (click)="submit.emit()">
