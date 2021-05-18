@@ -12,6 +12,7 @@ export const environment = {
   apiProvider: '/fineract-provider/api',
   apiVersion: '/v1',
   serverUrl: '',
+  debitOrderServerUrl: '',
   oauth: {
     enabled: false,  // For connecting to Mifos X using OAuth2 Authentication change the value to true
     serverUrl: ''
@@ -25,3 +26,4 @@ export const environment = {
 // Server URL
 environment.serverUrl = `${environment.baseApiUrl}${environment.apiProvider}${environment.apiVersion}`;
 environment.oauth.serverUrl = `${environment.baseApiUrl}${environment.apiProvider}`;
+environment.debitOrderServerUrl = `http://localhost:8090/api/v1`;
