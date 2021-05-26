@@ -3,7 +3,7 @@ FROM node:latest as build
 WORKDIR /app
 COPY . .
 RUN npm install
-RUN npm run build --prod
+RUN npm run build --prod --output-hashing=all
 
 
 # Stage 1:
