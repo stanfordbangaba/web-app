@@ -86,7 +86,8 @@ export class CreateProductMixComponent implements OnInit {
     };
     const productMixId = this.productMixForm.value.productId;
     this.productsService.createProductMix(productMix, productMixId).subscribe((response: any) => {
-      this.router.navigate(['../', response.resourceId], { relativeTo: this.route });
+      console.log(`Mix response :: ${JSON.stringify(response)}`)
+      this.router.navigate(['../', response.productId], { relativeTo: this.route });
     });
   }
 }
