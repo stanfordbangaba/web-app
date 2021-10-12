@@ -11,7 +11,7 @@ docker run --name lms-core --restart=always --network=host -d -e DRIVERCLASS_NAM
       -e fineract_tenants_pwd=mysql  \
       -e FINERACT_DEFAULT_TENANTDB_HOSTNAME=localhost  \
       -e FINERACT_DEFAULT_TENANTDB_PORT=3306   \
-      -e FINERACT_DEFAULT_TENANTDB_UID=root    \docker
+      -e FINERACT_DEFAULT_TENANTDB_UID=root    \
       -e FINERACT_DEFAULT_TENANTDB_PWD=mysql   \
       -e FINERACT_DEFAULT_TENANTDB_CONN_PARAMS=   \
-      anotida/esol-core
+      anotida/cash22lmscore
