@@ -1,8 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { FormControl } from '@angular/forms';
+import {Component, OnInit, Input} from '@angular/core';
+import {MatDialog} from '@angular/material/dialog';
+import {FormControl} from '@angular/forms';
 
-import { DeleteDialogComponent } from 'app/shared/delete-dialog/delete-dialog.component';
+import {DeleteDialogComponent} from 'app/shared/delete-dialog/delete-dialog.component';
 
 @Component({
   selector: 'mifosx-loan-product-charges-step',
@@ -28,8 +28,9 @@ export class LoanProductChargesStepComponent implements OnInit {
 
   ngOnInit() {
     this.chargeData = this.loanProductsTemplate.chargeOptions;
-    this.overdueChargeData = this.loanProductsTemplate.penaltyOptions.filter((penalty: any) => penalty.chargeTimeType.code === 'chargeTimeType.overdueInstallment');
-
+    if (this.loanProductsTemplate.penaltyOptions) {
+      this.overdueChargeData = this.loanProductsTemplate.penaltyOptions.filter((penalty: any) => penalty.chargeTimeType.code === 'chargeTimeType.overdueInstallment');
+    }
     this.chargesDataSource = this.loanProductsTemplate.charges || [];
     this.pristine = true;
 
@@ -45,7 +46,7 @@ export class LoanProductChargesStepComponent implements OnInit {
 
   deleteCharge(charge: any) {
     const deleteChargeDialogRef = this.dialog.open(DeleteDialogComponent, {
-      data: { deleteContext: `charge ${charge.name}` }
+      data: {deleteContext: `charge ${charge.name}`}
     });
     deleteChargeDialogRef.afterClosed().subscribe((response: any) => {
       if (response.delete) {
