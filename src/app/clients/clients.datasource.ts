@@ -42,6 +42,16 @@ export class ClientsDataSource implements DataSource<any> {
       });
   }
 
+  getAllClients(orderBy: string = '', sortOrder: string = '', pageIndex: number = 0, limit: number = 10) {
+    this.clientsSubject.next([]);
+    this.clientsService.getClients(orderBy, sortOrder, pageIndex * limit, limit)
+      .subscribe((clients: any) => {
+        // clients.pageItems = (clientActive) ? (clients.pageItems.filter((client: any) => client.active)) : (clients.pageItems.filter((client: any) => !client.active));
+        this.recordsSubject.next(clients.totalFilteredRecords);
+        this.clientsSubject.next(clients.pageItems);
+      });
+  }
+
   /**
    * @param {CollectionViewer} collectionViewer
    */
@@ -69,6 +79,15 @@ export class ClientsDataSource implements DataSource<any> {
     this.clientsService.getClients(orderBy, sortOrder, pageIndex * limit, limit)
       .subscribe((clients: any) => {
         clients.pageItems = clients.pageItems.filter((client: any) => client.active === clientActive && client.displayName.toLowerCase().includes(filter));
+        this.recordsSubject.next(clients.totalFilteredRecords);
+        this.clientsSubject.next(clients.pageItems);
+      });
+  }
+
+  filterAllClients(filter: string, orderBy: string = '', sortOrder: string = '', pageIndex: number = 0, limit: number = 10) {
+    this.clientsSubject.next([]);
+    this.clientsService.getClients(orderBy, sortOrder, pageIndex * limit, limit)
+      .subscribe((clients: any) => {
         this.recordsSubject.next(clients.totalFilteredRecords);
         this.clientsSubject.next(clients.pageItems);
       });

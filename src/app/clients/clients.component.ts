@@ -56,7 +56,7 @@ export class ClientsComponent implements OnInit, AfterViewInit {
     if (this.searchValue !== '') {
     this.applyFilter(this.searchValue);
     } else {
-    this.dataSource.getClients(this.sort.active, this.sort.direction, this.paginator.pageIndex, this.paginator.pageSize, !this.showClosedAccounts.checked);
+    this.dataSource.getAllClients(this.sort.active, this.sort.direction, this.paginator.pageIndex, this.paginator.pageSize);
     }
   }
 
@@ -65,7 +65,7 @@ export class ClientsComponent implements OnInit, AfterViewInit {
    */
   getClients() {
     this.dataSource = new ClientsDataSource(this.clientsService);
-    this.dataSource.getClients(this.sort.active, this.sort.direction, this.paginator.pageIndex, this.paginator.pageSize, !this.showClosedAccounts.checked);
+    this.dataSource.getAllClients(this.sort.active, this.sort.direction, this.paginator.pageIndex, this.paginator.pageSize);
   }
 
   /**
@@ -74,7 +74,7 @@ export class ClientsComponent implements OnInit, AfterViewInit {
    */
   applyFilter(filterValue: string= '') {
     this.searchValue = filterValue;
-    this.dataSource.filterClients(filterValue.trim().toLowerCase(), this.sort.active, this.sort.direction, this.paginator.pageIndex, this.paginator.pageSize, !this.showClosedAccounts.checked);
+    this.dataSource.filterAllClients(filterValue.trim().toLowerCase(), this.sort.active, this.sort.direction, this.paginator.pageIndex, this.paginator.pageSize);
   }
 
 }

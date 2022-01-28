@@ -4,8 +4,8 @@
       <mat-form-field>
         <input matInput placeholder="Search by client name" (keyup)="applyFilter($event.target.value)">
       </mat-form-field>
-      <mat-checkbox #showClosedAccounts labelPosition="after">Show None Active Accounts
-      </mat-checkbox>
+<!--      <mat-checkbox #showClosedAccounts labelPosition="after">Show None Active Accounts-->
+<!--      </mat-checkbox>-->
     </div>
     <div class="action-button" fxLayoutGap="25px">
       <button mat-raised-button color="primary" [routerLink]="['../', 'organization', 'bulk-import', 'Clients']" *mifosxHasPermission="'CREATE_CLIENT'">

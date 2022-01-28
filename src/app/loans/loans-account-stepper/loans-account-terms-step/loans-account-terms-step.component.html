@@ -64,7 +64,7 @@
       <mat-form-field fxFlex="48%">
         <mat-label>Frequency</mat-label>
         <mat-select formControlName="repaymentFrequencyType" required
-          [disabled]="!loansAccountProductTemplate?.product.allowAttributeOverrides.repaymentEvery">
+          [disabled]="!loansAccountProductTemplate?.product.allowAttributeOverrides.repaymentEvery" (change)="updateFields($event)">
           <mat-option *ngFor="let repaymentFrequencyType of termFrequencyTypeData"
             [value]="repaymentFrequencyType.id">
             {{ repaymentFrequencyType.value }}
@@ -74,7 +74,7 @@
 
       <mat-form-field fxFlex="48%" *ngIf="loansAccountTermsForm.controls.repaymentFrequencyType.value == 2">
         <mat-label>Select On</mat-label>
-        <mat-select formControlName="repaymentFrequencyNthDayType" required>
+        <mat-select formControlName="repaymentFrequencyNthDayType">
           <mat-option
             *ngFor="let repaymentFrequencyNthDayType of repaymentFrequencyNthDayTypeData"
             [value]="repaymentFrequencyNthDayType.id">
@@ -85,7 +85,7 @@
 
       <mat-form-field fxFlex="48%" *ngIf="loansAccountTermsForm.controls.repaymentFrequencyType.value == 2">
         <mat-label>Select Day</mat-label>
-        <mat-select formControlName="repaymentFrequencyDayOfWeekType" required>
+        <mat-select formControlName="repaymentFrequencyDayOfWeekType">
           <mat-option
             *ngFor="let repaymentFrequencyDayOfWeekType of repaymentFrequencyDaysOfWeekTypeData"
             [value]="repaymentFrequencyDayOfWeekType.id">

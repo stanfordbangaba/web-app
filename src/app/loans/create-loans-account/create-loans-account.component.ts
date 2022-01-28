@@ -1,16 +1,16 @@
 /** Angular Imports */
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { DatePipe } from '@angular/common';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
+import {DatePipe} from '@angular/common';
 
 /** Custom Services */
-import { LoansService } from '../loans.service';
-import { SettingsService } from 'app/settings/settings.service';
+import {LoansService} from '../loans.service';
+import {SettingsService} from 'app/settings/settings.service';
 
 /** Step Components */
-import { LoansAccountDetailsStepComponent } from '../loans-account-stepper/loans-account-details-step/loans-account-details-step.component';
-import { LoansAccountTermsStepComponent } from '../loans-account-stepper/loans-account-terms-step/loans-account-terms-step.component';
-import { LoansAccountChargesStepComponent } from '../loans-account-stepper/loans-account-charges-step/loans-account-charges-step.component';
+import {LoansAccountDetailsStepComponent} from '../loans-account-stepper/loans-account-details-step/loans-account-details-step.component';
+import {LoansAccountTermsStepComponent} from '../loans-account-stepper/loans-account-terms-step/loans-account-terms-step.component';
+import {LoansAccountChargesStepComponent} from '../loans-account-stepper/loans-account-charges-step/loans-account-charges-step.component';
 
 /**
  * Create loans account
@@ -23,9 +23,9 @@ import { LoansAccountChargesStepComponent } from '../loans-account-stepper/loans
 export class CreateLoansAccountComponent implements OnInit {
 
   /** Imports all the step component */
-  @ViewChild(LoansAccountDetailsStepComponent, { static: true }) loansAccountDetailsStep: LoansAccountDetailsStepComponent;
-  @ViewChild(LoansAccountTermsStepComponent, { static: true }) loansAccountTermsStep: LoansAccountTermsStepComponent;
-  @ViewChild(LoansAccountChargesStepComponent, { static: true }) loansAccountChargesStep: LoansAccountChargesStepComponent;
+  @ViewChild(LoansAccountDetailsStepComponent, {static: true}) loansAccountDetailsStep: LoansAccountDetailsStepComponent;
+  @ViewChild(LoansAccountTermsStepComponent, {static: true}) loansAccountTermsStep: LoansAccountTermsStepComponent;
+  @ViewChild(LoansAccountChargesStepComponent, {static: true}) loansAccountChargesStep: LoansAccountChargesStepComponent;
 
   /** Loans Account Template */
   loansAccountTemplate: any;
@@ -43,10 +43,10 @@ export class CreateLoansAccountComponent implements OnInit {
    * @param {SettingsService} settingsService Settings Service
    */
   constructor(private route: ActivatedRoute,
-    private router: Router,
-    private datePipe: DatePipe,
-    private loansService: LoansService,
-    private settingsService: SettingsService
+              private router: Router,
+              private datePipe: DatePipe,
+              private loansService: LoansService,
+              private settingsService: SettingsService
   ) {
     this.route.data.subscribe((data: { loansAccountTemplate: any }) => {
       this.loansAccountTemplate = data.loansAccountTemplate;
@@ -145,7 +145,7 @@ export class CreateLoansAccountComponent implements OnInit {
     }
 
     this.loansService.createLoansAccount(loansAccountData).subscribe((response: any) => {
-      this.router.navigate(['../', response.resourceId], { relativeTo: this.route });
+      this.router.navigate(['../', response.resourceId], {relativeTo: this.route});
     });
   }
 

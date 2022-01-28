@@ -213,11 +213,11 @@ export class LoansAccountChargesStepComponent implements OnInit, OnChanges {
       data: { collateralOptions: this.collateralOptions }
     });
     addCollateralDialogRef.afterClosed().subscribe((response: any) => {
-      if (response.addCollateralForm) {
+      if (response) {
         const collateralData = {
-          type: response.addCollateralForm.value.type,
-          value: response.addCollateralForm.value.value,
-          description: response.addCollateralForm.value.description
+          type: response.type,
+          value: response.value,
+          description: response.description
         };
         this.collateralDataSource = this.collateralDataSource.concat(collateralData);
 

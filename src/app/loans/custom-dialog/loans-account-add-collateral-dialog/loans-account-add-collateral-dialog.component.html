@@ -34,6 +34,6 @@
 
 <mat-dialog-actions fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center" fxLayoutGap="2%">
   <button mat-raised-button mat-dialog-close> Cancel </button>
-  <button mat-raised-button color="primary" [mat-dialog-close]="{ data: addCollateralForm }"
+  <button mat-raised-button color="primary" (click)="closeDialog()"
     [disabled]="!addCollateralForm.valid || addCollateralForm.pristine">{{ layout.addButtonText }}</button>
 </mat-dialog-actions>

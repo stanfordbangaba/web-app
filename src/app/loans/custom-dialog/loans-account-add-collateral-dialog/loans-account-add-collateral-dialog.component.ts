@@ -1,6 +1,6 @@
-import { Component, OnInit, Inject } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import {Component, OnInit, Inject} from '@angular/core';
+import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import {FormGroup, FormBuilder, Validators} from '@angular/forms';
 
 @Component({
   selector: 'mifosx-loans-account-add-collateral-dialog',
@@ -12,21 +12,21 @@ export class LoansAccountAddCollateralDialogComponent implements OnInit {
   layout: {
     addButtonText?: string
   } = {
-      addButtonText: 'Add'
-    };
+    addButtonText: 'Add'
+  };
 
   addCollateralForm: FormGroup;
   collateralTypeData: any;
 
   constructor(public dialogRef: MatDialogRef<LoansAccountAddCollateralDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any,
-    private formBuilder: FormBuilder) {
+              @Inject(MAT_DIALOG_DATA) public data: any,
+              private formBuilder: FormBuilder) {
     this.createAddCollateralForm();
   }
 
   ngOnInit() {
     this.dialogRef.updateSize('400px');
-    this.collateralTypeData = this.data.collateralTypeOptions;
+    this.collateralTypeData = this.data.collateralOptions;
   }
 
   createAddCollateralForm() {
@@ -35,6 +35,10 @@ export class LoansAccountAddCollateralDialogComponent implements OnInit {
       'value': ['', Validators.required],
       'description': ['', Validators.required]
     });
+  }
+
+  closeDialog() {
+    this.dialogRef.close(this.addCollateralForm.value);
   }
 
 }

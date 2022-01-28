@@ -150,4 +150,8 @@ export class LoansAccountTermsStepComponent implements OnInit, OnChanges {
     return this.loansAccountTermsForm.value;
   }
 
+  updateFields($event: Event) {
+    console.log("Clicked");
+    console.log(JSON.stringify($event));
+  }
 }
